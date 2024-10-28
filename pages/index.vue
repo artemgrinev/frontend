@@ -1,0 +1,4 @@
+<template>
+    <BaseContainer>
+    </BaseContainer>
+</template>

@@ -1,0 +1,200 @@
+{
+    "id": 1,
+    "title": "Борщ по семейному рецепту",
+    "description": "Единственного правильного рецепта борща не существует, в каждой семье он свой, самый вкусный. По такому рецепту меня научила варить борщ свекровь, с тех пор именно он для меня стал самым-самым.",
+    "ingredients": [
+        {
+            "name": "говядина (лучше на косточке)",
+            "count": "300 г"
+        },
+        {
+            "name": "картофель (средний)",
+            "count": "4 шт."
+        },
+        {
+            "name": "лук репчатый",
+            "count": "2 шт."
+        },
+        {
+            "name": "свёкла",
+            "count": "300-350 г"
+        },
+        {
+            "name": "морковь",
+            "count": "150-200 г"
+        },
+       {
+            "name": "перец сладкий",
+            "count": "1 шт."
+        },
+        {
+            "name": "томаты очищенные в с/с",
+            "count": "250-300 мл"
+        },
+        {
+            "name": "капуста",
+            "count": "500 г"
+        },
+        {
+            "name": "масло растительное и сливочное",
+            "count": "немного"
+        }
+    ],
+    "instructions": [
+        {
+            "title": "Возьмите не самую маленькую кастрюлю на вашей кухне, так как мало борща нет смысла варить, 5-ти литровая кастрюля вполне подойдёт. Мясо, специи, очищенные луковицу и картофелину положите в кастрюлю с холодной водой.",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-1.jpg"
+        },
+        {
+            "title":"После закипания убавьте огонь, снимайте появляющуюся пену ложкой. ",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-2.jpg"
+        },
+        {
+            "title": "Остальную картошку почистите и нарежьте кубиками. Добавьте в кастрюлю, когда целая картофелина станет полуготовой.",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-3.jpg"
+        },
+        {
+            "title": "Приготовьте зажарку. Мелко нарежьте лук кубиками, перец — полукольцами, почистите и натрите свёклу и морковь.",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-4.jpg"
+        },
+        {
+            "title": "Обжарьте лук и перец в небольшом количестве растительного масла. Добавьте сливочное масло, положите в сковороду морковь, свёклу и очищенные томаты. ",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-5.jpg"
+        },
+        {
+            "title": "Достаньте из бульона целую картофелину, разомните вилкой. ",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-6.jpg"
+        },
+        {
+            "title": "Верните картофель обратно в кастрюлю. Луковицу достаньте и выбросьте. ",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-7.jpg"
+        },
+        {
+            "title": "Добавьте уже готовую зажарку в кастрюлю с бульоном и перемешайте. ",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-8.jpg"
+        },
+        {
+            "title": "Капусту мелко нашинкуйте, добавьте в закипающий борщ. Количество капусты может варьироваться в зависимости от вкусовых пристрастий домочадцев. Кто-то любит пожиже, а другому нужно ложку в борщ «поставить». Ещё посолите по вкусу, дождитесь закипания и выключите огонь. ",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-9.jpg"
+        },
+        {
+            "title": "Добавьте в борщ петрушку и/или укроп и накройте крышкой. Заверните кастрюлю с борщом в полотенце и дайте постояться 2-3 часа. Тогда он будет максимально вкусным.",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-10.jpg"
+        },
+        {
+            "title": "Спустя 2-3 часа можно смело подавать борщ на стол со сметаной, чёрным хлебом и кусочком сыровяленой грудинки. ",
+            "image": "https://storage.yandexcloud.net/blutce/b-step-11.jpg"
+        }
+
+    ],
+    "products": [
+      {
+        "id": 1,
+        "shopName": "",
+        "url": "https//",
+        "title": "Шейная часть говяжья Перекрёсток без кости",
+        "price": 819,
+        "discountPercentage": 0,
+        "rating": 4.94,
+        "weight": 1,
+        "amount": "кг",
+        "minimumOrderQuantity": 0.5,
+        "thumbnail": "https://storage.yandexcloud.net/blutce/govadina.jpg"
+      },
+      {
+        "id": 2,
+        "shopName": "",
+        "url": "https//",
+        "title": "Капуста",
+        "price": 819,
+        "discountPercentage": 0,
+        "rating": 4.94,
+        "weight": 1,
+        "amount": "кг",
+        "minimumOrderQuantity": 0.5,
+        "thumbnail": "https://storage.yandexcloud.net/blutce/kapycta.jpg"
+      },
+      {
+        "id": 3,
+        "shopName": "",
+        "url": "https//",
+        "title": "Картофель сезонный",
+        "price": 819,
+        "discountPercentage": 0,
+        "rating": 4.94,
+        "weight": 1,
+        "amount": "кг",
+        "minimumOrderQuantity": 0.5,
+        "thumbnail": "https://storage.yandexcloud.net/blutce/kartofel.jpg"
+      },
+      {
+          "id": 4,
+          "shopName": "",
+          "url": "https//",
+          "title": "Лук репчатый",
+          "price": 819,
+          "discountPercentage": 0,
+          "rating": 4.94,
+          "weight": 1,
+          "amount": "кг",
+          "minimumOrderQuantity": 0.5,
+          "thumbnail": "https://storage.yandexcloud.net/blutce/luck.jpg"
+      },
+      {
+          "id": 5,
+          "shopName": "",
+          "url": "https//",
+          "title": "Морковь мытая",
+          "price": 819,
+          "discountPercentage": 0,
+          "rating": 4.94,
+          "weight": 1,
+          "amount": "кг",
+          "minimumOrderQuantity": 0.5,
+          "thumbnail": "https://storage.yandexcloud.net/blutce/morkov.jpg"
+      },
+      {
+          "id": 6,
+          "shopName": "",
+          "url": "https//",
+          "title": "Перец красный",
+          "price": 819,
+          "discountPercentage": 0,
+          "rating": 4.94,
+          "weight": 1,
+          "amount": "кг",
+          "minimumOrderQuantity": 0.5,
+          "thumbnail": "https://storage.yandexcloud.net/blutce/perec.jpg"
+      },
+      {
+          "id": 7,
+          "shopName": "",
+          "url": "https//",
+          "title": "Свекла",
+          "price": 81,
+          "discountPercentage": 0,
+          "rating": 4.94,
+          "weight": 1,
+          "amount": "кг",
+          "minimumOrderQuantity": 0.5,
+          "thumbnail": "https://storage.yandexcloud.net/blutce/svekla.jpg"
+      }
+    ],
+    "prepTimeMinutes": 80,
+    "cookTimeMinutes": 40,
+    "preliminaryPreparation": "",
+    "servings": 4,
+    "difficulty": "Средний",
+    "cuisine": "Italian",
+    "caloriesPerServing": 300,
+    "tags": [
+      "Суп",
+      "Горячее"
+    ],
+    "image": "~/assets/img/recipes.jpg",
+    "rating": 4.6,
+    "reviewCount": 3,
+    "viewCount": 3,
+    "datePublished": "26 сентября 2015"
+  }
+  
