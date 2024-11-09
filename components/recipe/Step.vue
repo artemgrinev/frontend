@@ -24,8 +24,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <li class="flex items-start flex-row mb-4">
-    <img class="object-cover h-auto w-64 rounded-xl" :src="img" alt="">
+  <li class="flex items-start flex-col sm:flex-row mb-4">
+    <img class="object-cover h-auto w-full sm:w-64 rounded-xl" :src="img" alt="">
     <div class="flex flex-col pl-6 p-3 leading-normal">
       <h5 class="mb-2 text-2xl font-semibold tracking-tight">Шаг {{ step + 1 }}/{{ countSteps }}</h5>
       <p class="mb-3 font-normal">

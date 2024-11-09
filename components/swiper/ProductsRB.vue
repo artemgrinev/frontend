@@ -42,7 +42,7 @@ watch(
         spaceBetween: 10,
       },
       320: {
-        slidesPerView: 3,
+        slidesPerView: 2.5,
         spaceBetween: 10,
       },
     }"
