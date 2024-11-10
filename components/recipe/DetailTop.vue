@@ -72,16 +72,16 @@ const props = defineProps({
       </h1>
 
       <!-- Tags -->
-      <div class="flex flex-col sm:flex-row flex-wrap gap-3 pb-4">
+      <div v-if="prepTimeMinutes" class="flex flex-col sm:flex-row flex-wrap gap-3 pb-4">
         <div class="rounded-md bg-gray-100 p-1.5 border border-transparent text-sm text-black transition-all">   
           Время приготовления: {{ prepTimeMinutes }} минут 
         </div>
-        <div class="rounded-md bg-gray-100 p-1.5 border border-transparent text-sm text-black transition-all">
+        <div v-if="cookTimeMinutes" class="rounded-md bg-gray-100 p-1.5 border border-transparent text-sm text-black transition-all">
            Активное время: {{ cookTimeMinutes }} минут 
         </div>
-        <div class="rounded-md bg-gray-100 p-1.5 border border-transparent text-sm text-black transition-all">   
+        <div v-if="difficulty" class="rounded-md bg-gray-100 p-1.5 border border-transparent text-sm text-black transition-all">   
           Сложность: {{ difficulty }} </div>
-        <div class="rounded-md bg-gray-100 p-1.5 border border-transparent text-sm text-black transition-all"> 
+        <div v-if="preliminaryPreparation" class="rounded-md bg-gray-100 p-1.5 border border-transparent text-sm text-black transition-all"> 
           {{ preliminaryPreparation }} 
         </div>
       </div>
