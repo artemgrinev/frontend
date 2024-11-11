@@ -1,4 +1,4 @@
+<script setup></script>
 <template>
-    <BaseContainer>
-    </BaseContainer>
+  <BaseContainer> </BaseContainer>
 </template>

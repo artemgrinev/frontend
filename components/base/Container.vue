@@ -1,3 +1,4 @@
+<script setup></script>
 <template>
   <div class="Container max-w-screen-xl mx-auto">
     <slot />
