@@ -8,6 +8,8 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
     "@nuxt/image",
+    "@nuxt/fonts",
+    "@nuxt/icon",
   ],
   tailwindcss: {
     cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
@@ -18,6 +20,7 @@ export default defineNuxtConfig({
     config: {},
     viewer: true,
   },
+  css: ["~/assets/css/global.css"],
   colorMode: {
     preference: "light",
     fallback: "light",
@@ -25,5 +28,15 @@ export default defineNuxtConfig({
   },
   image: {
     domains: ["storage.yandexcloud.net"],
+  },
+  fonts: {
+    families: [
+      {
+        name: "Esqadero FF CY 4F",
+        src: "/fonts/esqaderoffcy4f.woff2",
+        weights: [400, 700],
+        styles: ["normal"],
+      },
+    ],
   },
 });
