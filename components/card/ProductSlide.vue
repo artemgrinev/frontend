@@ -3,34 +3,51 @@ const props = defineProps({
   title: {
     type: String,
     required: true,
-    default: ""
+    default: "",
   },
   img: {
     type: String,
     required: false,
-    default: "@/assets/img/product.jpg"
+    default: "@/assets/img/product.jpg",
   },
   link: {
     type: String,
     required: false,
-    default: "#"
+    default: "#",
   },
   weight: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
   },
   price: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
   },
   rating: {
     type: Number,
     required: false,
-    default: 0
-  }
+    default: 0,
+  },
 });
+
+const isOpen = ref(false);
+
+const people = [
+  { id: 1, label: "Wade Cooper" },
+  { id: 2, label: "Arlene Mccoy" },
+  { id: 3, label: "Devon Webb" },
+  { id: 4, label: "Tom Cook" },
+  { id: 5, label: "Tanya Fox" },
+  { id: 6, label: "Hellen Schmidt" },
+  { id: 7, label: "Caroline Schultz" },
+  { id: 8, label: "Mason Heaney" },
+  { id: 9, label: "Claudie Smitham" },
+  { id: 10, label: "Emil Schaefer" },
+];
+
+const selected = ref([]);
 </script>
 
 <template>
@@ -38,12 +55,19 @@ const props = defineProps({
     <div class="bg-white rounded-xl">
       <!-- Image -->
       <a :href="link" class="relative block">
-        <img class="relative rounded-t-lg object-cover" 
+        <img
+          class="relative rounded-t-lg object-cover"
           :src="img"
           alt="product image"
         />
-        <div class="flex items-center absolute bottom-0 left-4 bg-white rounded-t-md z-10">
-          <UIcon class="ProductCard__rating inline-block text-yellow-500" name="material-symbols:kid-star" size="" />
+        <div
+          class="flex items-center absolute bottom-0 left-4 bg-white rounded-t-md z-10"
+        >
+          <UIcon
+            class="ProductCard__rating inline-block text-yellow-500"
+            name="material-symbols:kid-star"
+            size=""
+          />
           <span class="inline-block text-sm">{{ props.rating }}</span>
         </div>
       </a>
@@ -51,24 +75,46 @@ const props = defineProps({
       <!-- Content -->
       <div class="px-4 pb-4 pt-2">
         <a class="text-gray-900 overflow-hidden" :href="link">
-          <h5 class="ProductCard_Slide__title mb-1 overflow-hidden text-ellipsis whitespace-normal">
+          <h5
+            class="ProductCard_Slide__title mb-1 overflow-hidden text-ellipsis whitespace-normal"
+          >
             {{ title }}
           </h5>
         </a>
         <span class="block text-gray-400 text-sm mb-2">{{ weight }} г</span>
-        <span class="inline-block bg-gray-100 px-2 rounded-md font-bold text-gray-900">{{ price }} ₽</span>
+        <div class="flex justify-between">
+          <!-- <span
+            class="inline-block items-center bg-gray-100 px-2 rounded-md font-bold text-gray-900"
+            >{{ price }} ₽</span
+          > -->
+          <UBadge class="bg-gray-100 font-bold text-gray-900" variant="soft"
+            >{{ price }} ₽</UBadge
+          >
+          <div>
+            <UButton label="Заменить" @click="isOpen = true" />
+
+            <UModal v-model="isOpen">
+              <UCommandPalette
+                v-model="selected"
+                multiple
+                nullable
+                :groups="[{ key: 'people', commands: people }]"
+              />
+            </UModal>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
-    
-<style scoped>
-  .ProductCard__Slide {
-    height: auto;
-    width: 198px;
-  }
 
-  /* @media (min-width: 768px) {
+<style scoped>
+.ProductCard__Slide {
+  height: auto;
+  width: 198px;
+}
+
+/* @media (min-width: 768px) {
     .ProductCard__Slide {
       width: 243px;
     }
@@ -79,7 +125,7 @@ const props = defineProps({
       width: 204px;
     }
   } */
-  /* @media (max-width: 544px) {
+/* @media (max-width: 544px) {
     .ProductCard__Slide {
       width: 14.6875rem;
     }
@@ -90,10 +136,10 @@ const props = defineProps({
     }
   } */
 
-  .ProductCard_Slide__title {
-    height: 48px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
+.ProductCard_Slide__title {
+  height: 48px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 </style>
