@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <main class="Container max-w-screen-xl mx-auto">
+  <main class="Container max-w-screen-xl mx-auto md:mt-24">
     <slot />
   </main>
 </template>

@@ -52,11 +52,11 @@ const selected = ref([]);
 
 <template>
   <div class="ProductCard__Slide">
-    <div class="bg-white rounded-xl">
+    <div class="bg-zinc-50 rounded-xl">
       <!-- Image -->
       <a :href="link" class="relative block">
         <img
-          class="relative rounded-t-lg object-cover"
+          class="relative rounded-xl object-cover"
           :src="img"
           alt="product image"
         />

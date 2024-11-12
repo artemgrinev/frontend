@@ -1,4 +1,6 @@
 <script setup></script>
 <template>
-  <BaseContainer> </BaseContainer>
+  <BaseContainer>
+    <h1>home page</h1>
+  </BaseContainer>
 </template>

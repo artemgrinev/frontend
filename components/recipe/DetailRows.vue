@@ -14,7 +14,7 @@ const stepsCount = computed(() => props.stepsItems.length);
       <slot name="product-header"></slot>
       <slot name="swiper"></slot>
     </div>
-    <div class="Recipe__Col _ingredients bg-slate-50">
+    <div class="Recipe__Col _ingredients bg-zinc-100">
       <slot name="ingredients"></slot>
     </div>
     <ul class="Recipe__Col _steps mt-6 md:pr-0">

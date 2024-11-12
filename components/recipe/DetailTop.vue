@@ -70,9 +70,7 @@ const props = defineProps({
       class="col-span-1 lg:col-span-5 xl:col-span-5 order-2 lg:order-1 flex flex-col"
     >
       <!-- Title -->
-      <h1
-        class="mb-4 text-4xl lg:text-4xl xl:text-4xl font-semibold lg:tracking-tight"
-      >
+      <h1 class="mb-4 text-2xl md:text-4xl font-semibold lg:tracking-tight">
         {{ title }}
       </h1>
 
@@ -82,7 +80,7 @@ const props = defineProps({
         class="flex flex-col sm:flex-row flex-wrap gap-3 pb-4"
       >
         <div
-          class="rounded-md bg-gray-100 p-1.5 border border-transparent text-sm text-black transition-all"
+          class="rounded-md bg-zinc-100 p-1.5 border border-transparent text-sm text-black transition-all"
         >
           Время приготовления: {{ prepTimeMinutes }} минут
         </div>

@@ -25,7 +25,11 @@ const instructions = ref(recipeData.instructions);
 </script>
 
 <template>
-  <UBreadcrumb :links="links" :ui="{ li: 'text-gray-500' }" />
+  <UBreadcrumb
+    class="max-md:hidden"
+    :links="links"
+    :ui="{ li: 'text-gray-500' }"
+  />
   <RecipeDetailTop
     :title="recipeData.title"
     :image="recipeData.image"

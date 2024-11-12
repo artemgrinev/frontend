@@ -4,3 +4,4 @@
     <slot></slot>
   </BaseContainer>
 </template>
+<style lang="css"></style>
