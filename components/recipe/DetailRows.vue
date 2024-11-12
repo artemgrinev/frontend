@@ -34,7 +34,7 @@ const stepsCount = computed(() => props.stepsItems.length);
 .Recipe__Rows {
   display: grid;
   grid-template-columns: 71% 29%;
-  padding-top: 84px;
+  padding-top: 40px;
 }
 
 .Recipe__Col {
