@@ -73,7 +73,7 @@ const selected = ref([]);
       </a>
 
       <!-- Content -->
-      <div class="px-4 pb-4 pt-2">
+      <div class="px-3 pb-4 pt-2">
         <a class="text-gray-900 overflow-hidden" :href="link">
           <h5
             class="ProductCard_Slide__title mb-1 overflow-hidden text-ellipsis whitespace-normal"
@@ -81,24 +81,38 @@ const selected = ref([]);
             {{ title }}
           </h5>
         </a>
-        <span class="block text-gray-400 text-sm mb-2">{{ weight }} г</span>
-        <div class="flex justify-between">
-          <UBadge class="bg-gray-100 font-bold text-gray-900" variant="soft"
-            >{{ price }} ₽</UBadge
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-gray-400 text-sm">{{ weight }} г</span>
+          <UBadge
+            class="md:hidden block bg-gray-100 font-bold text-gray-900"
+            variant="soft"
           >
-          <div>
-            <UButton label="Заменить" @click="isOpen = true" />
-
-            <UModal v-model="isOpen">
-              <UCommandPalette
-                v-model="selected"
-                multiple
-                nullable
-                :groups="[{ key: 'people', commands: people }]"
-              />
-            </UModal>
+            {{ price }} ₽
+          </UBadge>
+        </div>
+        <div class="md:flex justify-between items-center">
+          <div class="hidden md:block">
+            <UBadge class="bg-gray-100 font-bold text-gray-900" variant="soft">
+              {{ price }} ₽
+            </UBadge>
+          </div>
+          <div class="w-full md:w-auto">
+            <UButton
+              label="Заменить"
+              @click="isOpen = true"
+              class="w-full md:w-auto flex items-center justify-center"
+            />
           </div>
         </div>
+
+        <UModal v-model="isOpen">
+          <UCommandPalette
+            v-model="selected"
+            multiple
+            nullable
+            :groups="[{ key: 'people', commands: people }]"
+          />
+        </UModal>
       </div>
     </div>
   </div>
