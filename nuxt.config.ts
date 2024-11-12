@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
+    "@nuxt/image",
   ],
   tailwindcss: {
     cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
