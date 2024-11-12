@@ -1,15 +1,34 @@
 <script setup>
+definePageMeta({
+  layout: "content",
+});
 import { ref } from "vue";
 import recipeData from "@/data/recipe.json";
-
+const links = [
+  {
+    label: "Главная",
+    to: "/",
+  },
+  {
+    label: "Ресепты",
+  },
+  {
+    label: "Супы",
+  },
+  {
+    label: recipeData.title,
+  },
+];
 const ingredients = ref(recipeData.ingredients);
 const products = ref(recipeData.products);
 const instructions = ref(recipeData.instructions);
 </script>
 
 <template>
+  <UBreadcrumb :links="links" :ui="{ li: 'text-gray-500' }" />
   <RecipeDetailTop
     :title="recipeData.title"
+    :image="recipeData.image"
     :description="recipeData.description"
     :cook-time-minutes="recipeData.cookTimeMinutes"
     :prep-time-minutes="recipeData.prepTimeMinutes"

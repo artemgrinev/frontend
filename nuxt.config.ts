@@ -23,4 +23,7 @@ export default defineNuxtConfig({
     fallback: "light",
     classSuffix: "",
   },
+  image: {
+    domains: ["storage.yandexcloud.net"],
+  },
 });

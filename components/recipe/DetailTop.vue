@@ -1,5 +1,4 @@
 <script setup>
-import recipesImage from "@/assets/img/recipes.jpg";
 const props = defineProps({
   title: {
     type: String,
@@ -9,7 +8,7 @@ const props = defineProps({
   image: {
     type: String,
     required: false,
-    default: recipesImage,
+    default: "",
   },
   description: {
     type: String,
@@ -57,10 +56,12 @@ const props = defineProps({
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 pb-10 md:pt-6">
     <!-- Image -->
     <div class="col-span-1 lg:col-span-7 xl:col-span-7 order-1 lg:order-2">
-      <img
-        class="rounded-xl w-full h-full object-cover"
+      <NuxtImg
+        class="rounded-3xl w-full h-full object-cover"
         :src="image"
         alt="Starship starts the engine"
+        height="408"
+        width="666"
       />
     </div>
 
