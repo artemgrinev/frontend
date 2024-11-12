@@ -20,6 +20,9 @@ const instructions = ref(recipeData.instructions);
     :date-published="recipeData.datePublished"
   />
   <RecipeDetailRows :steps-items="instructions">
+    <template v-slot:product-header>
+      <RecipeProductHeader />
+    </template>
     <template v-slot:swiper>
       <SwiperProductsRB :items="products" />
     </template>

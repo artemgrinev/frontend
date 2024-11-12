@@ -83,10 +83,6 @@ const selected = ref([]);
         </a>
         <span class="block text-gray-400 text-sm mb-2">{{ weight }} г</span>
         <div class="flex justify-between">
-          <!-- <span
-            class="inline-block items-center bg-gray-100 px-2 rounded-md font-bold text-gray-900"
-            >{{ price }} ₽</span
-          > -->
           <UBadge class="bg-gray-100 font-bold text-gray-900" variant="soft"
             >{{ price }} ₽</UBadge
           >
