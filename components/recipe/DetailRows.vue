@@ -60,7 +60,7 @@ const stepsCount = computed(() => props.stepsItems.length);
 @media (max-width: 1023px) {
   .Recipe__Rows {
     display: block;
-    padding-top: 0;
+    padding-top: 20;
   }
 
   .Recipe__Col {

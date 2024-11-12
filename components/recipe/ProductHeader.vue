@@ -34,9 +34,9 @@ const selected = ref(people[0]);
 </script>
 
 <template>
-  <div class="_product-header">
-    <h3 class="font-bold text-2xl">Продукты для рецепта</h3>
-    <div class="flex">
+  <div class="sm:flex flex-row items-centr justify-between">
+    <h3 class="md:font-bold text-2xl max-md:pb-5">Продукты для рецепта</h3>
+    <div class="flex justify-between">
       <UBadge class="mr-3 px-6 text-md" variant="soft" label="Badge" />
       <USelectMenu
         v-model="selected"
