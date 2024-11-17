@@ -6,24 +6,86 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+model Recipe {
+  id                     Int       @id @default(autoincrement())
+  title                  String
+  description            String?
+  prepTimeMinutes        Int?
+  cookTimeMinutes        Int?
+  preliminaryPreparation String?
+  servings               Int?
+  difficulty             String?
+  cuisine                String?
+  caloriesPerServing     Int?
+  image                  String?
+  rating                 Float?
+  reviewCount            Int?
+  viewCount              Int?
+  datePublished          DateTime?
 
-            model User {
-              id    Int     @id @default(autoincrement())
-              email String  @unique
-              name  String?
-              posts Post[]
-            }
+  ingredients  Ingredient[]
+  instructions Instruction[]
+  tags         RecipeTag[]
+  products     RecipeProduct[]
+}
 
-            model Post {
-              id        Int     @id @default(autoincrement())
-              title     String
-              content   String?
-              published Boolean @default(false)
-              author    User    @relation(fields: [authorId], references: [id])
-              authorId  Int
-            }
-          
+model Ingredient {
+  id       Int     @id @default(autoincrement())
+  name     String
+  count    String?
+  recipe   Recipe  @relation(fields: [recipeId], references: [id])
+  recipeId Int
+}
+
+model Instruction {
+  id         Int     @id @default(autoincrement())
+  title      String
+  image      String?
+  recipe     Recipe  @relation(fields: [recipeId], references: [id])
+  recipeId   Int
+  stepNumber Int
+}
+
+model Product {
+  id                   Int     @id @default(autoincrement())
+  shopName             String?
+  url                  String?
+  title                String
+  price                Float
+  discountPercentage   Float?
+  rating               Float?
+  weight               Float?
+  amount               String?
+  minimumOrderQuantity Float?
+  thumbnail            String?
+
+  recipes RecipeProduct[]
+}
+
+model Tag {
+  id      Int         @id @default(autoincrement())
+  name    String      @unique
+  recipes RecipeTag[]
+}
+
+model RecipeTag {
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId Int
+  tag      Tag    @relation(fields: [tagId], references: [id])
+  tagId    Int
+
+  @@id([recipeId, tagId])
+}
+
+model RecipeProduct {
+  recipe    Recipe  @relation(fields: [recipeId], references: [id])
+  recipeId  Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
+  @@id([recipeId, productId])
+}

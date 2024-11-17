@@ -1,0 +1,12 @@
+version: "3.9"
+name: "bludce"
+services:
+  postgres:
+    container_name: bludce
+    image: postgres:16-alpine3.19
+    environment:
+      POSTGRES_DB: "recipes"
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - "5432:5432"
