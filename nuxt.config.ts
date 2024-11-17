@@ -40,4 +40,7 @@ export default defineNuxtConfig({
       },
     ],
   },
+  prisma: {
+    autoSetupPrisma: true,
+  },
 });
