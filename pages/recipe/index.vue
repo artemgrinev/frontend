@@ -1,27 +1,20 @@
 <script setup>
+import { ref, computed } from "vue";
+
 definePageMeta({
   layout: "content",
 });
-import { ref } from "vue";
-import recipeData from "@/data/recipe.json";
-const links = [
-  {
-    label: "Главная",
-    to: "/",
-  },
-  {
-    label: "Ресепты",
-  },
-  {
-    label: "Супы",
-  },
-  {
-    label: recipeData.title,
-  },
-];
-const ingredients = ref(recipeData.ingredients);
-const products = ref(recipeData.products);
-const instructions = ref(recipeData.instructions);
+
+const { data: recipeData } = await useFetch("/api/recipes/1");
+
+const links = computed(() => [
+  { label: "Главная", to: "/" },
+  { label: "Рецепты", to: "/recipes" },
+  { label: "Супы", to: "/recipes/soups" },
+  { label: recipeData.value?.title },
+]);
+
+const { ingredients, products, instructions } = recipeData.value || {};
 </script>
 
 <template>

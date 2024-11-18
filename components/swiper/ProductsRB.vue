@@ -1,11 +1,10 @@
 <script setup>
-
 const props = defineProps({
   items: {
     type: Object,
     required: true,
-    default: []
-  }
+    default: [],
+  },
 });
 
 const loading = ref(true);
@@ -47,19 +46,14 @@ watch(
       },
     }"
   >
-    <SwiperSlide
-        v-for="item in items"
-        :key="item.id"
-      >
-        <SkeletonProductSlide v-if="loading"/>
-        <CardProductSlide
-          v-else
-          :title="item.title"
-          :img="item.thumbnail"
-          :weight="item.weight"
-          :price="item.price"
-          :rating="item.rating"
-        />
+    <SwiperSlide v-for="item in items" :key="item.productId">
+      <CardProductSlide
+        :title="item.product.title"
+        :img="item.product.thumbnail"
+        :weight="item.product.weight"
+        :price="item.product.price"
+        :rating="item.product.rating"
+      />
     </SwiperSlide>
   </Swiper>
 </template>
@@ -88,6 +82,4 @@ watch(
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
 </style>
-
