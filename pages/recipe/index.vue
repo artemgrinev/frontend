@@ -5,8 +5,7 @@ definePageMeta({
   layout: "content",
 });
 
-const { data: recipeData } = await useFetch("/api/recipes/1");
-
+const { data: recipeData, status } = await useFetch("/api/recipes/1");
 const links = computed(() => [
   { label: "Главная", to: "/" },
   { label: "Рецепты", to: "/recipes" },
@@ -15,6 +14,7 @@ const links = computed(() => [
 ]);
 
 const { ingredients, products, instructions } = recipeData.value || {};
+const isLoading = computed(() => status.value === "pending");
 </script>
 
 <template>

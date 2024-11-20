@@ -98,7 +98,35 @@
       "weight": 1,
       "amount": "кг",
       "minimumOrderQuantity": 0.5,
-      "thumbnail": "https://storage.yandexcloud.net/blutce/govadina.jpg"
+      "thumbnail": "https://storage.yandexcloud.net/blutce/govadina.jpg",
+      "similarProducts": [
+        {
+          "id": 8,
+          "shopName": "",
+          "url": "https//",
+          "title": "Шейная часть говяжья",
+          "price": 819,
+          "discountPercentage": 0,
+          "rating": 4.94,
+          "weight": 1,
+          "amount": "кг",
+          "minimumOrderQuantity": 0.5,
+          "thumbnail": "https://storage.yandexcloud.net/blutce/govadina.jpg"
+        },
+        {
+          "id": 9,
+          "shopName": "",
+          "url": "https//",
+          "title": "Шейная часть говяжья Перекрёсток",
+          "price": 819,
+          "discountPercentage": 0,
+          "rating": 4.94,
+          "weight": 1,
+          "amount": "кг",
+          "minimumOrderQuantity": 0.5,
+          "thumbnail": "https://storage.yandexcloud.net/blutce/govadina.jpg"
+        }
+      ]
     },
     {
       "id": 2,

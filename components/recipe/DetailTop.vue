@@ -62,6 +62,8 @@ const props = defineProps({
         alt="Starship starts the engine"
         height="408"
         width="666"
+        :placeholder="[666, 408, 75, 5]"
+        placeholder-class="bg-gray-200"
       />
     </div>
 

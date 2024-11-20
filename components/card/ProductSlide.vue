@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from "vue";
+
 const props = defineProps({
   title: {
     type: String,
@@ -8,7 +10,6 @@ const props = defineProps({
   img: {
     type: String,
     required: false,
-    default: "@/assets/img/product.jpg",
   },
   link: {
     type: String,
@@ -32,10 +33,26 @@ const props = defineProps({
   },
 });
 
+const imageLoaded = ref(false);
+
+const handleImageLoad = () => {
+  imageLoaded.value = true;
+};
+
 const isOpen = ref(false);
 
-const people = [
-  { id: 1, label: "Wade Cooper" },
+// const products = similarProducts.map((product) => ({
+//   id: product.id,
+//   label: product.title,
+//   image: product.thumbnail,
+// }));
+const similarProducts = [
+  {
+    id: 1,
+    label: "Wade Cooper",
+    image: "https://storage.yandexcloud.net/blutce/govadina.jpg",
+    price: 254,
+  },
   { id: 2, label: "Arlene Mccoy" },
   { id: 3, label: "Devon Webb" },
   { id: 4, label: "Tom Cook" },
@@ -55,10 +72,17 @@ const selected = ref([]);
     <div class="bg-zinc-50 rounded-xl">
       <!-- Image -->
       <a :href="link" class="relative block">
-        <img
+        <NuxtImg
           class="relative rounded-xl object-cover"
+          :class="{ 'opacity-0': !imageLoaded, 'opacity-100': imageLoaded }"
+          @load="handleImageLoad"
           :src="img"
           alt="product image"
+        />
+        <USkeleton
+          v-if="!imageLoaded"
+          class="pr-3"
+          :ui="{ rounded: 'rounded-xl' }"
         />
         <div
           class="flex items-center absolute bottom-0 left-4 bg-white rounded-t-md z-10"
@@ -110,8 +134,21 @@ const selected = ref([]);
             v-model="selected"
             multiple
             nullable
-            :groups="[{ key: 'people', commands: people }]"
-          />
+            :groups="[{ key: 'similarProducts', commands: similarProducts }]"
+          >
+            <template #similarProducts-icon="{ command }">
+              <div class="flex items-center">
+                <img
+                  :src="command.image"
+                  alt=""
+                  class="mr-2 w-16 h-16 rounded-full"
+                />
+              </div>
+            </template>
+            <template #similarProducts-inactive="{ command }">
+              <div class="flex items-center">{{ command.price }}</div>
+            </template>
+          </UCommandPalette>
         </UModal>
       </div>
     </div>
@@ -123,28 +160,6 @@ const selected = ref([]);
   height: auto;
   width: 198px;
 }
-
-/* @media (min-width: 768px) {
-    .ProductCard__Slide {
-      width: 243px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .ProductCard__Slide {
-      width: 204px;
-    }
-  } */
-/* @media (max-width: 544px) {
-    .ProductCard__Slide {
-      width: 14.6875rem;
-    }
-  }
-  @media (max-width: 543px) {
-    .ProductCard__Slide {
-      width: 152px;
-    }
-  } */
 
 .ProductCard_Slide__title {
   height: 48px;
