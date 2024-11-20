@@ -50,9 +50,19 @@ model Instruction {
   stepNumber Int
 }
 
+model Shop {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  url   String?
+  icon  String?
+
+  products Product[]
+}
+
 model Product {
   id                   Int     @id @default(autoincrement())
-  shopName             String?
+  shopId               Int?
+  shop                 Shop?   @relation(fields: [shopId], references: [id])
   url                  String?
   title                String
   price                Float
@@ -64,7 +74,11 @@ model Product {
   thumbnail            String?
 
   recipes RecipeProduct[]
+  similarProducts      Product[] @relation("SimilarProducts")
+  similarTo           Product[] @relation("SimilarProducts")
 }
+
+
 
 model Tag {
   id      Int         @id @default(autoincrement())
