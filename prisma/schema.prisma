@@ -71,6 +71,7 @@ model Product {
   weight               Float?
   amount               String?
   minimumOrderQuantity Float?
+  pack                 Boolean  @default(false)
   thumbnail            String?
 
   recipes RecipeProduct[]
