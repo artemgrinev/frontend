@@ -68,7 +68,7 @@ model Product {
   price                Float
   discountPercentage   Float?
   rating               Float?
-  weight               Float?
+  weight               Int?
   amount               String?
   minimumOrderQuantity Float?
   pack                 Boolean  @default(false)
