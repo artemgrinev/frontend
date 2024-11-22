@@ -53,61 +53,34 @@
           v-model="newIngredient.amount"
           :options="amountOptions"
         />
-        <UButton class="mr-3" label="Добавить продукт" />
-        <UButton label="Добавить ингредиент" @click.prevent="addIngredient" />
-      </div>
-    </div>
 
-    <!-- ПРОДУКТЫ -->
+        <!-- Add Product -->
 
-    <UDivider class="py-4" label="ПРОДУКТЫ" size="sm" />
-    <div>
-      <div v-if="products.length > 0" class="mb-4">
-        <h3>Добавленные продукты:</h3>
-        <ul>
-          <li v-for="(product, index) in products" :key="index">
-            {{ product.title }} - {{ product.count }}
-            {{ product.amount }}
-          </li>
-        </ul>
-      </div>
-      <div class="flex justify-between mb-4">
-        <UInput
-          class="pr-3 w-full"
-          v-model="newProducts.title"
-          placeholder="Выбрать продукт"
-          @click="isOpen = true"
-        />
+        <UButton class="mr-3" label="Добавить продукт" @click="isOpen = true" />
         <UModal v-model="isOpen">
           <UCommandPalette
+            :empty-state="{
+              icon: 'i-heroicons-magnifying-glass-20-solid',
+              label:
+                'Выберите основной продукт. Затем добавте ещё несколько похожих',
+              queryLabel: 'Ни чего не нашлось',
+            }"
+            placeholder="Найти продукты..."
+            ref="commandPaletteRef"
             :groups="groups"
             :autoselect="false"
-            @update:model-value="onProductSelect"
+            @update:model-value="onSelect"
           />
         </UModal>
-        <UBadge class="mr-3" label="Badge" />
-        <UBadge class="mr-3" label="Badge" />
-        <UInput
-          class="pr-3"
-          v-model="newProducts.count"
-          type="number"
-          size="sm"
-          placeholder="Количество"
-        />
-        <UInputMenu
-          class="w-28 mr-3"
-          v-model="newProducts.amount"
-          :options="amountOptions"
-        />
-        <UButton class="mr-3" label="Альтернатива" />
-        <UButton label="Добавить продукт" @click.prevent="addProduct" />
+
+        <UButton label="Добавить ингредиент" @click.prevent="addIngredient" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 definePageMeta({
   layout: "content",
@@ -131,43 +104,59 @@ function addIngredient() {
   }
 }
 // ПРОДУКТЫ
-const products = ref([]);
-const newProducts = ref({ id: "", title: "", count: 0, amount: "кг." });
-function addProduct() {
-  if (newProducts.value.title && newProducts.value.count) {
-    products.value.push({ ...newProducts.value });
-    newProducts.value = { title: "", count: "", amount: "кг." };
+const commandPaletteRef = ref();
+const addProduct = ref([]);
+const groups = computed(() =>
+  [
+    commandPaletteRef.value?.query
+      ? {
+          key: "users",
+          label: (q) => q && `Users matching “${q}”...`,
+          search: async (q) => {
+            if (!q) {
+              return [];
+            }
+
+            // @ts-ignore
+            const users = await $fetch(
+              "https://jsonplaceholder.typicode.com/users",
+              {
+                params: { q },
+              }
+            );
+
+            return users.map((user) => ({
+              id: user.id,
+              label: user.name,
+              suffix: user.email,
+              click: () => {
+                console.log("Click on user:", user.name);
+                addProduct.value.push({
+                  id: user.id,
+                  label: user.name,
+                  suffix: user.email,
+                });
+              },
+            }));
+          },
+        }
+      : [],
+    ...(addProduct.value.length > 0
+      ? [
+          {
+            key: "product",
+            label: "Основной продукт",
+            commands: addProduct.value,
+          },
+        ]
+      : []),
+  ].filter(Boolean)
+);
+function onSelect(option) {
+  if (option.click) {
+    option.click();
   }
 }
-function onProductSelect(selected) {
-  console.log("Selected:", selected);
-  console.log(selected.label);
-  newProducts.value.title = selected.label;
-  isOpen.value = false;
-}
-
-const groups = [
-  {
-    key: "users",
-    label: (q) => q && `Users matching “${q}”...`,
-    search: async (q) => {
-      if (!q) {
-        return [];
-      }
-
-      // @ts-ignore
-      const users = await $fetch("https://jsonplaceholder.typicode.com/users", {
-        params: { q },
-      });
-
-      return users.map((user) => ({
-        id: user.id,
-        label: user.name,
-        suffix: user.email,
-      }));
-    },
-  },
-];
 
 const isOpen = ref(false);
 </script>
