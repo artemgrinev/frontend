@@ -30,7 +30,6 @@ model Recipe {
   ingredients  Ingredient[]
   instructions Instruction[]
   tags         RecipeTag[]
-  products     RecipeProduct[]
 }
 
 model Ingredient {
@@ -39,6 +38,9 @@ model Ingredient {
   count    String?
   recipe   Recipe  @relation(fields: [recipeId], references: [id])
   recipeId Int
+  products  Product[] @relation("IngredientToProduct")
+  mainProduct Product? @relation("MainProductForIngredient", fields: [mainProductId], references: [id])
+  mainProductId Int?
 }
 
 model Instruction {
@@ -74,12 +76,19 @@ model Product {
   pack                 Boolean  @default(false)
   thumbnail            String?
 
-  recipes RecipeProduct[]
+  ingredients Ingredient[] @relation("IngredientToProduct")
+  mainIngredientFor Ingredient[] @relation("MainProductForIngredient")
   similarProducts      Product[] @relation("SimilarProducts")
   similarTo           Product[] @relation("SimilarProducts")
+  tags             ProductTag[]    @relation("ProductToProductTag")
 }
 
 
+model ProductTag {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[] @relation("ProductToProductTag")
+}
 
 model Tag {
   id      Int         @id @default(autoincrement())
@@ -94,13 +103,4 @@ model RecipeTag {
   tagId    Int
 
   @@id([recipeId, tagId])
-}
-
-model RecipeProduct {
-  recipe    Recipe  @relation(fields: [recipeId], references: [id])
-  recipeId  Int
-  product   Product @relation(fields: [productId], references: [id])
-  productId Int
-
-  @@id([recipeId, productId])
 }
