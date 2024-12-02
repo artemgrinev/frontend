@@ -43,4 +43,12 @@ export default defineNuxtConfig({
   prisma: {
     autoSetupPrisma: true,
   },
+  runtimeConfig: {
+    public: {
+      YANDEX_ACCESS_KEY: process.env.YANDEX_ACCESS_KEY,
+      YANDEX_SECRET_KEY: process.env.YANDEX_SECRET_KEY,
+      YANDEX_BACKET_NAME: process.env.YANDEX_BACKET_NAME,
+      YANDEX_DEBUG: process.env.YANDEX_DEBUG,
+    },
+  },
 });
