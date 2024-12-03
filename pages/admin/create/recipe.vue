@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="flex">
+      <!-- ИЗОБРОЖЕНИЕ -->
       <div class="file-upload-container flex-shrink-0 mr-3">
         <UButton
           class="w-80 h-80 flex flex-col items-center justify-center"
@@ -19,7 +20,7 @@
           @change="handleFileChange"
         />
       </div>
-
+      <!-- ОПИСАНИЕ -->
       <div class="flex-col w-full">
         <h3>Название</h3>
         <UInput class="mb-4 w-full" v-model="title" />
@@ -29,7 +30,7 @@
           v-model="description"
           :ui="{ base: 'h-wull' }"
         />
-        <div class="flex justify-between">
+        <div class="flex justify-between mb-4">
           <div>
             <h3>Время приготовления</h3>
             <UInput
@@ -53,6 +54,24 @@
           <div>
             <h3>Сложность</h3>
             <UInputMenu v-model="selectedDifficulty" :options="difficulty" />
+          </div>
+        </div>
+        <div class="flex justify-between">
+          <div>
+            <h3>Порции</h3>
+            <UInput class="mr-2" v-model="servings" type="number" />
+          </div>
+          <div>
+            <h3>Категория</h3>
+            <UInputMenu
+              class="mr-2 w-44"
+              v-model="selectedCategory"
+              :options="categories"
+            />
+          </div>
+          <div class="mr-2 w-full">
+            <h3>Теги</h3>
+            <UInputMenu v-model="selectedTag" :options="tags" />
           </div>
         </div>
       </div>
@@ -91,7 +110,7 @@
           :options="amountOptions"
         />
 
-        <!-- Add Product -->
+        <!-- ПОИСК ПРОДУКТОВ -->
 
         <UButton class="mr-3" label="Добавить продукт" @click="isOpen = true" />
         <UModal v-model="isOpen">
@@ -136,11 +155,12 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 definePageMeta({
   layout: "content",
 });
+
 // ИЗОБРОЖЕНИЕ
 
 const fileInput = ref(null);
@@ -176,8 +196,6 @@ const uploadFile = async (file) => {
     if (response.success) {
       console.log("Файл успешно загружен:", response.fileUrl);
       uploadedImageUrl.value = response.fileUrl;
-      // Здесь вы можете отправить событие родительскому компоненту, если нужно
-      // emit('image-uploaded', response.fileUrl);
     } else {
       throw new Error(
         response.message || "Неизвестная ошибка при загрузке файла"
@@ -197,9 +215,37 @@ const description = ref("");
 const cookTimeMinutes = ref(0);
 const prepTimeMinutes = ref(0);
 const preliminaryPreparation = ref("");
+const selectedCategory = ref("Выберите категорию");
+const categories = ref([]);
+const selectedTag = ref(
+  "Выберите несколько тегов которые лучше всего опишут блюдо"
+);
+const tags = ref([]);
+const servings = ref(0);
 const difficulty = ["Легкий", "Средний", "Сложный"];
 const selectedDifficulty = ref(difficulty[0]);
 const amountOptions = ["кг.", "гр.", "л.", "мл.", "шт."];
+
+const fetchData = async () => {
+  try {
+    const response = await fetch("/api/recipes/categories"); // Замените на ваш реальный путь к API
+    if (!response.ok) {
+      throw new Error("Ошибка сети");
+    }
+    const data = await response.json();
+    categories.value = data.categories.map((category) => ({
+      value: category.id,
+      label: category.name,
+    }));
+    tags.value = data.tags.map((tag) => ({
+      value: tag.id,
+      label: tag.name,
+    }));
+  } catch (error) {
+    console.error("Ошибка получения данных:", error);
+  }
+};
+onMounted(fetchData);
 // ИНГРИДИЕНТЫ
 const ingredients = ref([]);
 const newIngredient = ref({ title: "", count: 0, amount: "кг.", product: "" });
@@ -330,10 +376,11 @@ const addRecipe = () => {
     prepTimeMinutes: prepTimeMinutes.value,
     cookTimeMinutes: cookTimeMinutes.value,
     preliminaryPreparation: preliminaryPreparation.value,
-    servings: "",
+    servings: servings.value,
     difficulty: selectedDifficulty.value,
+    categories: selectedCategory.value,
     cuisine: "",
-    tags: "",
+    tags: selectedTag.value,
     image: uploadedImageUrl.value,
     datePublished: "",
   };
