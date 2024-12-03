@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex">
-      <!-- ИЗОБРОЖЕНИЕ -->
+      <!-- --------------------------------ИЗОБРОЖЕНИЕ-------------------------------- -->
       <div class="file-upload-container flex-shrink-0 mr-3">
         <UButton
           class="w-80 h-80 flex flex-col items-center justify-center"
@@ -20,7 +20,7 @@
           @change="handleFileChange"
         />
       </div>
-      <!-- ОПИСАНИЕ -->
+      <!-- --------------------------------ОПИСАНИЕ-------------------------------- -->
       <div class="flex-col w-full">
         <h3>Название</h3>
         <UInput class="mb-4 w-full" v-model="title" />
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <!-- ИНГРИДИЕНТЫ -->
+    <!-- --------------------------------ИНГРИДИЕНТЫ-------------------------------- -->
 
     <UDivider class="py-4" label="ИНГРИДИЕНТЫ" size="sm" />
 
@@ -110,7 +110,7 @@
           :options="amountOptions"
         />
 
-        <!-- ПОИСК ПРОДУКТОВ -->
+        <!-- --------------------------------ПОИСК ПРОДУКТОВ-------------------------------- -->
 
         <UButton class="mr-3" label="Добавить продукт" @click="isOpen = true" />
         <UModal v-model="isOpen">
@@ -161,7 +161,7 @@ definePageMeta({
   layout: "content",
 });
 
-// ИЗОБРОЖЕНИЕ
+// --------------------------------ИЗОБРОЖЕНИЕ--------------------------------
 
 const fileInput = ref(null);
 const isUploading = ref(false);
@@ -209,7 +209,7 @@ const uploadFile = async (file) => {
   }
 };
 
-// ОПИСАНИЕ РЕЦЕПТА
+// --------------------------------ОПИСАНИЕ РЕЦЕПТА--------------------------------
 const title = ref("");
 const description = ref("");
 const cookTimeMinutes = ref(0);
@@ -228,7 +228,7 @@ const amountOptions = ["кг.", "гр.", "л.", "мл.", "шт."];
 
 const fetchData = async () => {
   try {
-    const response = await fetch("/api/recipes/categories"); // Замените на ваш реальный путь к API
+    const response = await fetch("/api/recipes/categories");
     if (!response.ok) {
       throw new Error("Ошибка сети");
     }
@@ -246,7 +246,8 @@ const fetchData = async () => {
   }
 };
 onMounted(fetchData);
-// ИНГРИДИЕНТЫ
+
+// --------------------------------ИНГРИДИЕНТЫ--------------------------------
 const ingredients = ref([]);
 const newIngredient = ref({ title: "", count: 0, amount: "кг.", product: "" });
 function addIngredient() {
@@ -257,7 +258,9 @@ function addIngredient() {
   console.log("Добавление ингредиента");
   console.log(ingredients);
 }
-// ПРОДУКТЫ
+
+// --------------------------------ПРОДУКТЫ--------------------------------
+const isOpen = ref(false);
 const commandPaletteRef = ref();
 const mainProduct = ref([]);
 const similarProducts = ref([]);
@@ -281,21 +284,16 @@ const groups = computed(() =>
             }
 
             try {
-              // Запрос к вашему API для поиска продуктов по названию
-              const products = await $fetch(
-                "http://localhost:3000/api/products/search",
-                {
-                  params: { q },
-                }
-              );
+              const products = await $fetch("/api/products/search", {
+                params: { q },
+              });
 
-              // Форматируем ответ для использования в интерфейсе
               return products.map((product) => ({
                 id: product.id,
                 label: product.title,
                 suffix: product.price
                   ? `${Math.floor(product.price)} ₽`
-                  : "No price", // Форматирование цены
+                  : "нет цены",
                 click: () => {
                   if (mainProduct.value.length > 0) {
                     similarProducts.value.push({
@@ -303,7 +301,7 @@ const groups = computed(() =>
                       label: product.title,
                       suffix: product.price
                         ? `${Math.floor(product.price)} ₽`
-                        : "No price",
+                        : "нет цены",
                     });
                   } else {
                     mainProduct.value.push({
@@ -311,14 +309,14 @@ const groups = computed(() =>
                       label: product.title,
                       suffix: product.price
                         ? `${Math.floor(product.price)} ₽`
-                        : "No price",
+                        : "нет цены",
                     });
                   }
                 },
               }));
             } catch (error) {
               console.error("Ошибка при выполнении поиска продуктов:", error);
-              return []; // Возвращаем пустой массив в случае ошибки
+              return [];
             }
           },
         }
@@ -367,6 +365,7 @@ const handleAddProducts = () => {
   similarProducts.value = [];
 };
 
+// --------------------------------BODY--------------------------------
 const addRecipe = () => {
   const body = {
     title: title.value,
@@ -388,9 +387,7 @@ const addRecipe = () => {
   console.log(body);
 };
 
-const isOpen = ref(false);
-
-// ПОДГОТОВКА ДАННЫХ
+// --------------------------------ПОДГОТОВКА ДАННЫХ--------------------------------
 let allProducts = [];
 </script>
 
