@@ -24,8 +24,9 @@ export const recipeSchema = z.object({
   ingredients: z
     .array(
       z.object({
-        name: z.string().min(1, { message: "Имя ингредиента обязательно" }),
-        count: z.string().optional(),
+        title: z.string().min(1, { message: "Имя ингредиента обязательно" }),
+        count: z.number().int().optional(),
+        amount: z.string(),
         mainProductId: z.number().int().optional(),
       })
     )

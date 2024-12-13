@@ -2,6 +2,7 @@
 
 import { PrismaClient } from "@prisma/client";
 import { recipeSchema } from "../../validation/recipeSchema";
+import { ZodError } from "zod";
 
 const prisma = new PrismaClient();
 
@@ -27,8 +28,9 @@ export default defineEventHandler(async (event) => {
 
         ingredients: {
           create: validatedData.ingredients.map((ingredient) => ({
-            name: ingredient.name,
+            title: ingredient.title,
             count: ingredient.count,
+            amount: ingredient.amount,
             mainProductId: ingredient.mainProductId || null,
           })),
         },

@@ -71,7 +71,7 @@
           </div>
           <div class="mr-2 w-full">
             <h3>Теги</h3>
-            <UInputMenu v-model="selectedTag" :options="tags" multiple />
+            <USelectMenu v-model="selectedTags" :options="tags" multiple />
           </div>
           <div class="w-56">
             <h3>Кухня</h3>
@@ -210,7 +210,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { addRecipe } from "~/utils/addRecipe";
-import { addAllSimilarProducts } from "~/utils/addAllSimilarProducts";
+import { addSimilarProducts } from "~/utils/addSimilarProducts";
 
 definePageMeta({
   layout: "content",
@@ -271,9 +271,7 @@ const prepTimeMinutes = ref(0);
 const preliminaryPreparation = ref("");
 const selectedCategory = ref("Выберите категорию");
 const categories = ref([]);
-const selectedTag = ref(
-  "Выберите несколько тегов которые лучше всего опишут блюдо"
-);
+const selectedTags = ref([]);
 const tags = ref([]);
 const selectedCuisine = ref("");
 const cuisines = ref([]);
@@ -458,7 +456,7 @@ const addRecipeWithProducts = async () => {
     image: step.image,
     stepNumber: step.stepNumber,
   }));
-  const tagsArray = selectedTag.value.map((tag) => {});
+  const tagsArray = selectedTags.value.map((tag) => ({ name: tag.label }));
   const body = {
     title: title.value,
     description: description.value,
@@ -471,7 +469,7 @@ const addRecipeWithProducts = async () => {
     difficulty: selectedDifficulty.value,
     categoryId: selectedCategory.value.id,
     cuisineId: selectedCuisine.value.id,
-    tags: selectedTag.value,
+    tags: tagsArray,
     image: uploadedImageUrl.value,
   };
   console.log("Body");
@@ -482,19 +480,21 @@ const addRecipeWithProducts = async () => {
     const newRecipe = await addRecipe(body);
     console.log("Рецепт успешно добавлен:", newRecipe);
 
-    // Здесь можно добавить логику для очистки формы или отображения сообщения об успехе
+    if (allProducts && allProducts.length > 0) {
+      try {
+        console.log("allProducts перед отправкой:", allProducts);
+        const results = await addSimilarProducts(allProducts);
+        message.value = "Похожие продукты успешно добавлены!";
+        console.log("Результаты добавления:", results);
+      } catch (error) {
+        message.value = "Произошла ошибка при добавлении похожих продуктов.";
+        console.error(error);
+      }
+    } else {
+      message.value = "Нет похожих продуктов для добавления.";
+    }
   } catch (error) {
     console.error("Ошибка при добавлении рецепта:", error);
-  }
-
-  try {
-    console.log("allProducts перед отправкой:", allProducts);
-    const results = await addAllSimilarProducts(allProducts);
-    message.value = "Похожие продукты успешно добавлены!"; // Успешное сообщение
-    console.log("Результаты добавления:", results);
-  } catch (error) {
-    message.value = "Произошла ошибка при добавлении похожих продуктов.";
-    console.error(error);
   }
 };
 </script>

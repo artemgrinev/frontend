@@ -1,10 +1,9 @@
-export const addSimilarProducts = async (productId, similarProductIds) => {
+export const addSimilarProducts = async (products) => {
   try {
     const response = await $fetch("/api/products/add-similar", {
       method: "POST",
       body: {
-        productId,
-        similarProductIds,
+        products,
       },
     });
 

@@ -38,8 +38,9 @@ model Recipe {
 
 model Ingredient {
   id       Int     @id @default(autoincrement())
-  name     String
-  count    String?
+  title     String
+  count    Int? // в будующем сделать поле обязательным!!!
+  amount String
   recipe   Recipe  @relation(fields: [recipeId], references: [id])
   recipeId Int
   products  Product[] @relation("IngredientToProduct")
@@ -50,7 +51,7 @@ model Ingredient {
 model Instruction {
   id         Int     @id @default(autoincrement())
   title      String
-  image      String?
+  image      String? 
   recipe     Recipe  @relation(fields: [recipeId], references: [id])
   recipeId   Int
   stepNumber Int
@@ -59,17 +60,17 @@ model Instruction {
 model Shop {
   id    Int     @id @default(autoincrement())
   name  String  @unique
-  url   String?
-  icon  String?
+  url   String? // тоже сделать обязательными
+  icon  String? // тоже сделать обязательными
 
   products Product[]
 }
 
 model Product {
   id                   Int     @id @default(autoincrement())
-  shopId               Int?
-  shop                 Shop?   @relation(fields: [shopId], references: [id])
-  url                  String?
+  shopId               Int? // тоже сделать обязательными
+  shop                 Shop?   @relation(fields: [shopId], references: [id]) //тоже сделать обязательными
+  url                  String? // тоже сделать обязательными
   title                String
   price                Float
   discountPercentage   Float?
