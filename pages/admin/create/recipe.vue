@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex">
+    <div class="flex mb-4">
       <!-- --------------------------------ИЗОБРОЖЕНИЕ-------------------------------- -->
       <div class="file-upload-container flex-shrink-0 mr-3">
         <UButton
@@ -53,25 +53,29 @@
           </div>
           <div>
             <h3>Сложность</h3>
-            <UInputMenu v-model="selectedDifficulty" :options="difficulty" />
+            <USelectMenu v-model="selectedDifficulty" :options="difficulty" />
           </div>
         </div>
         <div class="flex justify-between">
           <div>
             <h3>Порции</h3>
-            <UInput class="mr-2" v-model="servings" type="number" />
+            <UInput class="mr-2 w-16" v-model="servings" type="number" />
           </div>
           <div>
             <h3>Категория</h3>
             <UInputMenu
-              class="mr-2 w-44"
+              class="mr-2 w-40"
               v-model="selectedCategory"
               :options="categories"
             />
           </div>
           <div class="mr-2 w-full">
             <h3>Теги</h3>
-            <UInputMenu v-model="selectedTag" :options="tags" />
+            <UInputMenu v-model="selectedTag" :options="tags" multiple />
+          </div>
+          <div class="w-56">
+            <h3>Кухня</h3>
+            <USelectMenu v-model="selectedCuisine" :options="cuisines" />
           </div>
         </div>
       </div>
@@ -87,7 +91,7 @@
         <ul>
           <li v-for="(ingredient, index) in ingredients" :key="index">
             {{ ingredient.title }} - {{ ingredient.count }}
-            {{ ingredient.amount }} - {{ ingredient.product[0].label }}
+            {{ ingredient.amount }} - {{ ingredient.product.label }}
           </li>
         </ul>
       </div>
@@ -112,7 +116,7 @@
 
         <!-- --------------------------------ПОИСК ПРОДУКТОВ-------------------------------- -->
 
-        <UButton class="mr-3" label="Добавить продукт" @click="isOpen = true" />
+        <UButton class="mr-3" label="Выбрать продукт" @click="isOpen = true" />
         <UModal v-model="isOpen">
           <UCommandPalette
             :empty-state="{
@@ -150,19 +154,69 @@
         <UButton label="Добавить ингредиент" @click.prevent="addIngredient" />
       </div>
     </div>
-    <UButton label="Сохранить" @click="addRecipe" />
+    <!-- --------------------------------ИНСТРУКЦИЯ-------------------------------- -->
+    <UDivider class="py-4" label="ИНСТРУКЦИЯ" size="sm" />
+    <div v-if="instructions.length > 0" class="mb-4">
+      <ul>
+        <li
+          class="flex mb-3"
+          v-for="(step, index) in instructions"
+          :key="index"
+        >
+          <NuxtImg
+            class="object-cover rounded-xl"
+            width="256"
+            height="170"
+            fit="cover"
+            :src="step.image"
+          />
+          <div class="flex flex-col md:pl-6 p-3 leading-normal">
+            <h5 class="mb-2 text-2xl font-semibold tracking-tight">
+              Шаг {{ step.stepNumber }}
+            </h5>
+            <p class="mb-3 font-normal">
+              {{ step.title }}
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="flex mb-4">
+      <BaseImageUpload size="sm" @image-uploaded="handleImageUploaded" />
+      <div class="flex-col w-full">
+        <h3>Описание</h3>
+        <UTextarea
+          class="mb-4 w-full"
+          v-model="newStep.title"
+          :ui="{ base: 'h-wull' }"
+        />
+        <div class="flex justify-end">
+          <UButton label="Добавить" @click.prevent="addStep" />
+        </div>
+      </div>
+    </div>
+    <UDivider class="py-4" label="ЗАВЕРШЕНИЕ" size="sm" />
+    <div class="flex justify-center">
+      <UButton
+        class="px-16"
+        label="Сохранить"
+        size="lg"
+        @click="addRecipeWithProducts"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { addRecipe } from "~/utils/addRecipe";
+import { addAllSimilarProducts } from "~/utils/addAllSimilarProducts";
 
 definePageMeta({
   layout: "content",
 });
 
 // --------------------------------ИЗОБРОЖЕНИЕ--------------------------------
-
 const fileInput = ref(null);
 const isUploading = ref(false);
 const errorMessage = ref("");
@@ -221,6 +275,8 @@ const selectedTag = ref(
   "Выберите несколько тегов которые лучше всего опишут блюдо"
 );
 const tags = ref([]);
+const selectedCuisine = ref("");
+const cuisines = ref([]);
 const servings = ref(0);
 const difficulty = ["Легкий", "Средний", "Сложный"];
 const selectedDifficulty = ref(difficulty[0]);
@@ -234,12 +290,16 @@ const fetchData = async () => {
     }
     const data = await response.json();
     categories.value = data.categories.map((category) => ({
-      value: category.id,
+      id: category.id,
       label: category.name,
     }));
     tags.value = data.tags.map((tag) => ({
-      value: tag.id,
+      id: tag.id,
       label: tag.name,
+    }));
+    cuisines.value = data.cuisines.map((cuisine) => ({
+      id: cuisine.id,
+      label: cuisine.name,
     }));
   } catch (error) {
     console.error("Ошибка получения данных:", error);
@@ -253,7 +313,7 @@ const newIngredient = ref({ title: "", count: 0, amount: "кг.", product: "" })
 function addIngredient() {
   if (newIngredient.value.title && newIngredient.value.count) {
     ingredients.value.push({ ...newIngredient.value });
-    newIngredient.value = { title: "", count: "", amount: "кг." };
+    newIngredient.value = { title: "", count: "", amount: "кг.", product: "" };
   }
   console.log("Добавление ингредиента");
   console.log(ingredients);
@@ -355,40 +415,88 @@ function onSelect(option) {
   }
 }
 const handleAddProducts = () => {
-  newIngredient.value.product = mainProduct.value;
+  newIngredient.value.product = mainProduct.value[0];
   allProducts.push({
-    mainProductId: mainProduct.value[0].id,
-    similarProductsIds: similarProducts.value.map((product) => product.id),
+    productId: mainProduct.value[0].id,
+    similarProductIds: similarProducts.value.map((product) => product.id),
   });
   isOpen.value = false;
   mainProduct.value = [];
   similarProducts.value = [];
+  console.log("similarProducts");
+  console.log(allProducts);
 };
-
+// --------------------------------STEPS-------------------------------
+const handleImageUploaded = (url) => {
+  newStep.value.image = url;
+};
+const newStep = ref({ title: "", image: "", stepNumber: 0 });
+const instructions = ref([]);
+let stepNumber = 1;
+const addStep = () => {
+  if (newStep.value.title && newStep.value.image) {
+    newStep.value.stepNumber = stepNumber;
+    instructions.value.push({ ...newStep.value });
+    newStep.value = { title: "", image: "", stepNumber: 0 };
+    stepNumber += 1;
+  }
+  console.log("Добавление steps");
+  console.log(instructions);
+};
 // --------------------------------BODY--------------------------------
-const addRecipe = () => {
+let allProducts = [];
+
+const addRecipeWithProducts = async () => {
+  const ingredientsArray = ingredients.value.map((ingredient) => ({
+    title: ingredient.title,
+    amount: ingredient.amount,
+    count: ingredient.count,
+    mainProductId: ingredient.product.id,
+  }));
+  const instructionsArray = instructions.value.map((step) => ({
+    title: step.title,
+    image: step.image,
+    stepNumber: step.stepNumber,
+  }));
+  const tagsArray = selectedTag.value.map((tag) => {});
   const body = {
     title: title.value,
     description: description.value,
-    ingredients: ingredients.value,
-    instructions: "",
+    ingredients: ingredientsArray,
+    instructions: instructionsArray,
     prepTimeMinutes: prepTimeMinutes.value,
     cookTimeMinutes: cookTimeMinutes.value,
     preliminaryPreparation: preliminaryPreparation.value,
     servings: servings.value,
     difficulty: selectedDifficulty.value,
-    categories: selectedCategory.value,
-    cuisine: "",
+    categoryId: selectedCategory.value.id,
+    cuisineId: selectedCuisine.value.id,
     tags: selectedTag.value,
     image: uploadedImageUrl.value,
-    datePublished: "",
   };
   console.log("Body");
   console.log(body);
-};
+  console.log("allProducts перед отправкой:", allProducts);
 
-// --------------------------------ПОДГОТОВКА ДАННЫХ--------------------------------
-let allProducts = [];
+  try {
+    const newRecipe = await addRecipe(body);
+    console.log("Рецепт успешно добавлен:", newRecipe);
+
+    // Здесь можно добавить логику для очистки формы или отображения сообщения об успехе
+  } catch (error) {
+    console.error("Ошибка при добавлении рецепта:", error);
+  }
+
+  try {
+    console.log("allProducts перед отправкой:", allProducts);
+    const results = await addAllSimilarProducts(allProducts);
+    message.value = "Похожие продукты успешно добавлены!"; // Успешное сообщение
+    console.log("Результаты добавления:", results);
+  } catch (error) {
+    message.value = "Произошла ошибка при добавлении похожих продуктов.";
+    console.error(error);
+  }
+};
 </script>
 
 <style scoped>

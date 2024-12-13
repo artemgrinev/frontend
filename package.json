@@ -19,7 +19,8 @@
     "nuxt-swiper": "^1.2.2",
     "swiper": "^11.1.14",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nuxt/fonts": "^0.10.2",

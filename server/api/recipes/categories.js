@@ -6,10 +6,12 @@ export default defineEventHandler(async (event) => {
   try {
     const categories = await prisma.recipeCategory.findMany();
     const tags = await prisma.recipeTag.findMany();
+    const cuisines = await prisma.cuisine.findMany();
 
     return {
       categories,
       tags,
+      cuisines,
     };
   } catch (error) {
     console.error(error);

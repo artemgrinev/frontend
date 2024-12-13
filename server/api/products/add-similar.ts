@@ -7,7 +7,9 @@ export default defineEventHandler(async (event) => {
     if (!productId || !Array.isArray(similarProductIds)) {
       throw createError({
         statusCode: 400,
-        message: "Неверный формат данных",
+        message: `Неверный формат данных. Полученные данные: productId = ${productId}, similarProductIds = ${JSON.stringify(
+          similarProductIds
+        )}`,
       });
     }
 
