@@ -2,6 +2,7 @@
 
 import { PrismaClient } from "@prisma/client";
 import { recipeSchema } from "../../validation/recipeSchema";
+import { transliterate } from "~/utils/transliterate";
 import { ZodError } from "zod";
 
 const prisma = new PrismaClient();
@@ -14,6 +15,7 @@ export default defineEventHandler(async (event) => {
     const newRecipe = await prisma.recipe.create({
       data: {
         title: validatedData.title,
+        url: transliterate(body.title),
         description: validatedData.description,
         prepTimeMinutes: validatedData.prepTimeMinutes,
         cookTimeMinutes: validatedData.cookTimeMinutes,

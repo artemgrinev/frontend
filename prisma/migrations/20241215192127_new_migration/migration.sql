@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "Recipe" (
     "id" SERIAL NOT NULL,
+    "url" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "prepTimeMinutes" INTEGER NOT NULL,
@@ -23,8 +24,9 @@ CREATE TABLE "Recipe" (
 -- CreateTable
 CREATE TABLE "Ingredient" (
     "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
-    "count" TEXT,
+    "title" TEXT NOT NULL,
+    "count" INTEGER NOT NULL,
+    "amount" TEXT NOT NULL,
     "recipeId" INTEGER NOT NULL,
     "mainProductId" INTEGER,
 
@@ -36,8 +38,8 @@ CREATE TABLE "Instruction" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "image" TEXT,
-    "recipeId" INTEGER NOT NULL,
     "stepNumber" INTEGER NOT NULL,
+    "recipeId" INTEGER NOT NULL,
 
     CONSTRAINT "Instruction_pkey" PRIMARY KEY ("id")
 );
@@ -46,8 +48,8 @@ CREATE TABLE "Instruction" (
 CREATE TABLE "Shop" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "url" TEXT,
-    "icon" TEXT,
+    "url" TEXT NOT NULL,
+    "icon" TEXT NOT NULL,
 
     CONSTRAINT "Shop_pkey" PRIMARY KEY ("id")
 );
@@ -55,17 +57,17 @@ CREATE TABLE "Shop" (
 -- CreateTable
 CREATE TABLE "Product" (
     "id" SERIAL NOT NULL,
-    "shopId" INTEGER,
-    "url" TEXT,
+    "url" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "discountPercentage" DOUBLE PRECISION,
-    "rating" DOUBLE PRECISION,
     "weight" INTEGER,
     "amount" TEXT,
     "minimumOrderQuantity" DOUBLE PRECISION,
     "pack" BOOLEAN NOT NULL DEFAULT false,
+    "rating" DOUBLE PRECISION,
     "thumbnail" TEXT,
+    "shopId" INTEGER NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -127,6 +129,9 @@ CREATE TABLE "_ProductToProductTag" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Recipe_url_key" ON "Recipe"("url");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Shop_name_key" ON "Shop"("name");
 
 -- CreateIndex
@@ -172,16 +177,16 @@ ALTER TABLE "Recipe" ADD CONSTRAINT "Recipe_categoryId_fkey" FOREIGN KEY ("categ
 ALTER TABLE "Recipe" ADD CONSTRAINT "Recipe_cuisineId_fkey" FOREIGN KEY ("cuisineId") REFERENCES "Cuisine"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Ingredient" ADD CONSTRAINT "Ingredient_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Ingredient" ADD CONSTRAINT "Ingredient_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Ingredient" ADD CONSTRAINT "Ingredient_mainProductId_fkey" FOREIGN KEY ("mainProductId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Instruction" ADD CONSTRAINT "Instruction_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Instruction" ADD CONSTRAINT "Instruction_recipeId_fkey" FOREIGN KEY ("recipeId") REFERENCES "Recipe"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_shopId_fkey" FOREIGN KEY ("shopId") REFERENCES "Shop"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Product" ADD CONSTRAINT "Product_shopId_fkey" FOREIGN KEY ("shopId") REFERENCES "Shop"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_RecipeToRecipeTag" ADD CONSTRAINT "_RecipeToRecipeTag_A_fkey" FOREIGN KEY ("A") REFERENCES "Recipe"("id") ON DELETE CASCADE ON UPDATE CASCADE;

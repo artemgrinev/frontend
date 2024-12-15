@@ -11,7 +11,8 @@ datasource db {
 }
 
 model Recipe {
-  id                     Int      @id @default(autoincrement())
+  id                     Int    @id @default(autoincrement())
+  url                    String @unique
   title                  String
   description            String
   prepTimeMinutes        Int
@@ -21,30 +22,34 @@ model Recipe {
   difficulty             String
   image                  String
   caloriesPerServing     Int?
-  rating                 Float    @default(0)
-  reviewCount            Int      @default(0)
-  viewCount              Int      @default(0)
+  rating                 Float   @default(0)
+  reviewCount            Int     @default(0)
+  viewCount              Int     @default(0)
   datePublished          DateTime
 
-  category   RecipeCategory @relation(fields: [categoryId], references: [id])
-  categoryId Int
-  cuisine    Cuisine        @relation(fields: [cuisineId], references: [id])
-  cuisineId  Int
+  category               RecipeCategory @relation(fields: [categoryId], references: [id])
+  categoryId             Int
 
-  ingredients  Ingredient[]
-  instructions Instruction[]
-  tags         RecipeTag[]  @relation("RecipeToRecipeTag")
+  cuisine                Cuisine        @relation(fields: [cuisineId], references: [id])
+  cuisineId              Int
+
+  ingredients            Ingredient[]
+  instructions           Instruction[]
+  tags                   RecipeTag[]    @relation("RecipeToRecipeTag")
 }
 
 model Ingredient {
-  id       Int     @id @default(autoincrement())
-  title     String
-  count    Int? // в будующем сделать поле обязательным!!!
-  amount String
-  recipe   Recipe  @relation(fields: [recipeId], references: [id])
-  recipeId Int
-  products  Product[] @relation("IngredientToProduct")
-  mainProduct Product? @relation("MainProductForIngredient", fields: [mainProductId], references: [id])
+  id            Int @id @default(autoincrement())
+  title         String
+  count         Int
+  amount        String
+
+  recipe        Recipe    @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId      Int
+
+  products      Product[] @relation("IngredientToProduct")
+
+  mainProduct   Product?  @relation("MainProductForIngredient", fields: [mainProductId], references: [id])
   mainProductId Int?
 }
 
@@ -52,40 +57,44 @@ model Instruction {
   id         Int     @id @default(autoincrement())
   title      String
   image      String? 
-  recipe     Recipe  @relation(fields: [recipeId], references: [id])
-  recipeId   Int
   stepNumber Int
+
+  recipe     Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId   Int
 }
 
 model Shop {
   id    Int     @id @default(autoincrement())
   name  String  @unique
-  url   String? // тоже сделать обязательными
-  icon  String? // тоже сделать обязательными
+  url   String
+  icon  String
 
   products Product[]
 }
 
 model Product {
   id                   Int     @id @default(autoincrement())
-  shopId               Int? // тоже сделать обязательными
-  shop                 Shop?   @relation(fields: [shopId], references: [id]) //тоже сделать обязательными
-  url                  String? // тоже сделать обязательными
+  url                  String
   title                String
   price                Float
   discountPercentage   Float?
-  rating               Float?
   weight               Int?
   amount               String?
   minimumOrderQuantity Float?
   pack                 Boolean  @default(false)
+  rating               Float?
   thumbnail            String?
 
-  ingredients Ingredient[] @relation("IngredientToProduct")
-  mainIngredientFor Ingredient[] @relation("MainProductForIngredient")
-  similarProducts      Product[] @relation("SimilarProducts")
-  similarTo           Product[] @relation("SimilarProducts")
-  tags             ProductTag[]    @relation("ProductToProductTag")
+  shopId               Int
+  shop                 Shop         @relation(fields: [shopId], references: [id])
+
+  ingredients          Ingredient[] @relation("IngredientToProduct")
+  mainIngredientFor    Ingredient[] @relation("MainProductForIngredient")
+
+  similarProducts      Product[]    @relation("SimilarProducts")
+  similarTo            Product[]    @relation("SimilarProducts")
+
+  tags                 ProductTag[] @relation("ProductToProductTag")
 }
 
 
