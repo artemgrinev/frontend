@@ -21,6 +21,11 @@ const props = defineProps({
     required: true,
     default: 0,
   },
+  amount: {
+    type: String,
+    required: true,
+    default: "",
+  },
   price: {
     type: Number,
     required: true,
@@ -31,6 +36,11 @@ const props = defineProps({
     required: false,
     default: 0,
   },
+  similarProducts: {
+    type: Array,
+    required: true,
+    default: [],
+  },
 });
 
 const imageLoaded = ref(false);
@@ -38,33 +48,6 @@ const imageLoaded = ref(false);
 const handleImageLoad = () => {
   imageLoaded.value = true;
 };
-
-const isOpen = ref(false);
-
-// const products = similarProducts.map((product) => ({
-//   id: product.id,
-//   label: product.title,
-//   image: product.thumbnail,
-// }));
-const similarProducts = [
-  {
-    id: 1,
-    label: "Wade Cooper",
-    image: "https://storage.yandexcloud.net/blutce/govadina.jpg",
-    price: 254,
-  },
-  { id: 2, label: "Arlene Mccoy" },
-  { id: 3, label: "Devon Webb" },
-  { id: 4, label: "Tom Cook" },
-  { id: 5, label: "Tanya Fox" },
-  { id: 6, label: "Hellen Schmidt" },
-  { id: 7, label: "Caroline Schultz" },
-  { id: 8, label: "Mason Heaney" },
-  { id: 9, label: "Claudie Smitham" },
-  { id: 10, label: "Emil Schaefer" },
-];
-
-const selected = ref([]);
 </script>
 
 <template>
@@ -75,8 +58,10 @@ const selected = ref([]);
         <NuxtImg
           class="relative rounded-xl object-cover"
           :class="{ 'opacity-0': !imageLoaded, 'opacity-100': imageLoaded }"
+          width="198"
+          height="198"
           @load="handleImageLoad"
-          :src="img"
+          :src="`https://storage.yandexcloud.net/bludce/images/products/${img}`"
           alt="product image"
         />
         <USkeleton
@@ -106,7 +91,7 @@ const selected = ref([]);
           </h5>
         </a>
         <div class="flex justify-between items-center mb-2">
-          <span class="text-gray-400 text-sm">{{ weight }} г</span>
+          <span class="text-gray-400 text-sm">{{ weight }} {{ amount }}</span>
           <UBadge
             class="md:hidden block bg-gray-100 font-bold text-gray-900"
             variant="soft"
@@ -121,35 +106,9 @@ const selected = ref([]);
             </UBadge>
           </div>
           <div class="w-full md:w-auto">
-            <UButton
-              label="Заменить"
-              @click="isOpen = true"
-              class="w-full md:w-auto flex items-center justify-center"
-            />
+            <SearchProducts :similarProducts="props.similarProducts" />
           </div>
         </div>
-
-        <UModal v-model="isOpen">
-          <UCommandPalette
-            v-model="selected"
-            multiple
-            nullable
-            :groups="[{ key: 'similarProducts', commands: similarProducts }]"
-          >
-            <template #similarProducts-icon="{ command }">
-              <div class="flex items-center">
-                <img
-                  :src="command.image"
-                  alt=""
-                  class="mr-2 w-16 h-16 rounded-full"
-                />
-              </div>
-            </template>
-            <template #similarProducts-inactive="{ command }">
-              <div class="flex items-center">{{ command.price }}</div>
-            </template>
-          </UCommandPalette>
-        </UModal>
       </div>
     </div>
   </div>

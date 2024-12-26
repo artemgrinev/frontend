@@ -1,0 +1,1176 @@
+{
+  "id": "73C2333",
+  "name": "Мясо и птица",
+  "advert": null,
+  "products_count": 72,
+  "image_link": "https://photos.okolo.app/category/73C2333-icon-fivedelivery/345x345.png",
+  "gradient_start": "#F4EFE4",
+  "gradient_end": "#F4EFE4",
+  "title_color": "#000000",
+  "description": null,
+  "description_md": null,
+  "description_html": null,
+  "subcategories": [
+    {
+      "id": "73C2424",
+      "name": "Птица",
+      "advert": null,
+      "products_count": 26,
+      "products": [
+        {
+          "plu": 3153446,
+          "name": "Тушка цыпленка охлажденная",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1162745-main/320x320.jpeg?updated_at=2024-12-18T12:58:47.924Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1162745-main/800x800.jpeg?updated_at=2024-12-18T12:58:47.924Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "2.0",
+          "rating": {
+            "rating_average": 4.91,
+            "rates_count": 146101
+          },
+          "promo": null,
+          "prices": {
+            "regular": "179.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "54.06"
+        },
+        {
+          "plu": 3191300,
+          "name": "Филе куриное охлажденное",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1163361-main/320x320.jpeg?updated_at=2024-12-18T12:58:55.947Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1163361-main/800x800.jpeg?updated_at=2024-12-18T12:58:55.947Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "0.9",
+          "rating": {
+            "rating_average": 4.91,
+            "rates_count": 50272
+          },
+          "promo": null,
+          "prices": {
+            "regular": "339.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "9.24"
+        },
+        {
+          "plu": 3191296,
+          "name": "Бедро куриное с частью спинки охлажденное",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1163358-main/320x320.jpeg?updated_at=2024-12-18T12:58:55.943Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1163358-main/800x800.jpeg?updated_at=2024-12-18T12:58:55.943Z",
+              "https://photos.okolo.app/product/7d3a2905b67489720b4ca7cd6f6add1e-additional/800x800.jpeg",
+              "https://photos.okolo.app/product/9b926dbbe65a822970c2fe271fc4c3c3-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "кг",
+          "step": "0.8",
+          "rating": {
+            "rating_average": 4.88,
+            "rates_count": 35476
+          },
+          "promo": null,
+          "prices": {
+            "regular": "199.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "4.95"
+        },
+        {
+          "plu": 3191297,
+          "name": "Голень куриная охлажденная",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1163359-main/320x320.jpeg?updated_at=2024-12-18T12:58:55.945Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1163359-main/800x800.jpeg?updated_at=2024-12-18T12:58:55.945Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "0.9",
+          "rating": {
+            "rating_average": 4.89,
+            "rates_count": 30523
+          },
+          "promo": null,
+          "prices": {
+            "regular": "242.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "10.09"
+        },
+        {
+          "plu": 2173555,
+          "name": "Филе грудки Петелинка цыпленка",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1161652-main/320x320.jpeg?updated_at=2024-12-18T12:58:38.337Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1161652-main/800x800.jpeg?updated_at=2024-12-18T12:58:38.337Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "0.8",
+          "rating": {
+            "rating_average": 4.91,
+            "rates_count": 13235
+          },
+          "promo": null,
+          "prices": {
+            "regular": "492.99",
+            "discount": "414.99"
+          },
+          "labels": [
+            {
+              "label": "-15%",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "9.64"
+        },
+        {
+          "plu": 4007208,
+          "name": "Филе бедра цыпленка Петелинка без кожи охлажденное",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1200352-main/320x320.jpeg?updated_at=2024-12-18T13:04:33.673Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1200352-main/800x800.jpeg?updated_at=2024-12-18T13:04:33.673Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "0.9",
+          "rating": {
+            "rating_average": 4.89,
+            "rates_count": 9952
+          },
+          "promo": null,
+          "prices": {
+            "regular": "459.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "2.77"
+        }
+      ]
+    },
+    {
+      "id": "73C2421",
+      "name": "Говядина и телятина",
+      "advert": null,
+      "products_count": 4,
+      "products": [
+        {
+          "plu": 3492564,
+          "name": "Чевапчичи Мираторг из говядины охлажденные 300г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1176367-main/320x320.jpeg?updated_at=2024-12-18T13:01:16.700Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1176367-main/800x800.jpeg?updated_at=2024-12-18T13:01:16.700Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.85,
+            "rates_count": 4078
+          },
+          "promo": null,
+          "prices": {
+            "regular": "215.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "300 г",
+          "has_age_restriction": false,
+          "stock_limit": "6.00"
+        },
+        {
+          "plu": 3667460,
+          "name": "Гуляш из говядины Эколь Халяль 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1188472-main/320x320.jpeg?updated_at=2024-12-18T13:02:48.930Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1188472-main/800x800.jpeg?updated_at=2024-12-18T13:02:48.930Z",
+              "https://photos.okolo.app/product/8d7d5bb66a6b463b9432a0e84924f4ed-additional/800x800.jpeg",
+              "https://photos.okolo.app/product/dd51a7620f593e3a3f8599e539747e3e-additional/800x800.jpeg",
+              "https://photos.okolo.app/product/56419d3d68073dd1b14bec0cfece8ee1-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.69,
+            "rates_count": 2874
+          },
+          "promo": null,
+          "prices": {
+            "regular": "405.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "2.00"
+        },
+        {
+          "plu": 4113680,
+          "name": "Стейк Мираторг Black Angus Паризьен из мраморной говядины 290г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1211033-main/320x320.jpeg?updated_at=2024-12-18T13:06:22.267Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1211033-main/800x800.jpeg?updated_at=2024-12-18T13:06:22.267Z",
+              "https://photos.okolo.app/product/a8cab3253a9245de33020ab98126f331-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.82,
+            "rates_count": 3063
+          },
+          "promo": null,
+          "prices": {
+            "regular": "499.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "290 г",
+          "has_age_restriction": false,
+          "stock_limit": "2.00"
+        },
+        {
+          "plu": 4271978,
+          "name": "Бефстроганов Мираторг из говядины охлажденный 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1502991-main/320x320.jpeg?updated_at=2024-12-18T13:16:52.087Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1502991-main/800x800.jpeg?updated_at=2024-12-18T13:16:52.087Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.87,
+            "rates_count": 89
+          },
+          "promo": null,
+          "prices": {
+            "regular": "399.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "2.00"
+        }
+      ]
+    },
+    {
+      "id": "73C2422",
+      "name": "Свинина",
+      "advert": null,
+      "products_count": 13,
+      "products": [
+        {
+          "plu": 4230669,
+          "name": "Окорок свиной бескостный охлажденный",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1458171-main/320x320.jpeg?updated_at=2024-12-18T13:15:47.785Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1458171-main/800x800.jpeg?updated_at=2024-12-18T13:15:47.785Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.85,
+            "rates_count": 19599
+          },
+          "promo": null,
+          "prices": {
+            "regular": "339.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "3.65"
+        },
+        {
+          "plu": 4230663,
+          "name": "Лопатка свиная бескостная охлажденная",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1458170-main/320x320.jpeg?updated_at=2024-12-18T13:15:47.279Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1458170-main/800x800.jpeg?updated_at=2024-12-18T13:15:47.279Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.82,
+            "rates_count": 23226
+          },
+          "promo": null,
+          "prices": {
+            "regular": "289.99",
+            "discount": null
+          },
+          "labels": [
+            {
+              "label": "Выгодно",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "4.01"
+        },
+        {
+          "plu": 3619732,
+          "name": "Шницель свиной Рестория охлажденный 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1180632-main/320x320.jpeg?updated_at=2024-12-18T13:01:50.669Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1180632-main/800x800.jpeg?updated_at=2024-12-18T13:01:50.669Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.89,
+            "rates_count": 13262
+          },
+          "promo": null,
+          "prices": {
+            "regular": "219.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "5.00"
+        },
+        {
+          "plu": 4057490,
+          "name": "Гуляш Рестория Свиной охлажденный 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1205335-main/320x320.jpeg?updated_at=2024-12-18T13:05:23.361Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1205335-main/800x800.jpeg?updated_at=2024-12-18T13:05:23.361Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.9,
+            "rates_count": 11408
+          },
+          "promo": null,
+          "prices": {
+            "regular": "190.39",
+            "discount": "169.99"
+          },
+          "labels": [
+            {
+              "label": "-10%",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "5.00"
+        },
+        {
+          "plu": 4230664,
+          "name": "Корейка свиная бескостная охлажденная",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1458930-main/320x320.jpeg?updated_at=2024-12-18T13:15:47.919Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1458930-main/800x800.jpeg?updated_at=2024-12-18T13:15:47.919Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.89,
+            "rates_count": 10249
+          },
+          "promo": null,
+          "prices": {
+            "regular": "429.99",
+            "discount": "359.9"
+          },
+          "labels": [
+            {
+              "label": "-16%",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "4.09"
+        },
+        {
+          "plu": 3619731,
+          "name": "Шейка свиная Рестория охлажденная 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1180631-main/320x320.jpeg?updated_at=2024-12-18T13:01:48.794Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1180631-main/800x800.jpeg?updated_at=2024-12-18T13:01:48.794Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.9,
+            "rates_count": 6940
+          },
+          "promo": null,
+          "prices": {
+            "regular": "249.99",
+            "discount": "209.99"
+          },
+          "labels": [
+            {
+              "label": "-16%",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "6.00"
+        }
+      ]
+    },
+    {
+      "id": "73C6614",
+      "name": "Полуфабрикаты",
+      "advert": null,
+      "products_count": 24,
+      "products": [
+        {
+          "plu": 4243884,
+          "name": "Фарш Петелинка Премиум из филе грудки охлажденный 450г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1465829-main/320x320.jpeg?updated_at=2024-12-18T13:16:04.984Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1465829-main/800x800.jpeg?updated_at=2024-12-18T13:16:04.984Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.91,
+            "rates_count": 8679
+          },
+          "promo": null,
+          "prices": {
+            "regular": "172.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "450 г",
+          "has_age_restriction": false,
+          "stock_limit": "10.00"
+        },
+        {
+          "plu": 4115862,
+          "name": "Шарики куриные Первая Свежесть охлажденные 450г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1211215-main/320x320.jpeg?updated_at=2024-12-18T13:06:24.598Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1211215-main/800x800.jpeg?updated_at=2024-12-18T13:06:24.598Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.93,
+            "rates_count": 8716
+          },
+          "promo": null,
+          "prices": {
+            "regular": "199.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "450 г",
+          "has_age_restriction": false,
+          "stock_limit": "4.00"
+        },
+        {
+          "plu": 3664055,
+          "name": "Котлеты Петелинка сливочные куриные 500г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1187997-main/320x320.jpeg?updated_at=2024-12-18T13:02:43.754Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1187997-main/800x800.jpeg?updated_at=2024-12-18T13:02:43.754Z",
+              "https://photos.okolo.app/product/01309315a1676311256efb0748faf6cb-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.89,
+            "rates_count": 6407
+          },
+          "promo": null,
+          "prices": {
+            "regular": "149.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "500 г",
+          "has_age_restriction": false,
+          "stock_limit": "5.00"
+        },
+        {
+          "plu": 4366504,
+          "name": "Фрикадельки Рестория свиные охлажденные 360г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1622258-main/320x320.jpeg?updated_at=2024-12-18T13:22:33.926Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1622258-main/800x800.jpeg?updated_at=2024-12-18T13:22:33.926Z",
+              "https://photos.okolo.app/product/9f130751fa24c09ff946235e15e767cf-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.9,
+            "rates_count": 7471
+          },
+          "promo": null,
+          "prices": {
+            "regular": "152.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "360 г",
+          "has_age_restriction": false,
+          "stock_limit": "8.00"
+        },
+        {
+          "plu": 4052710,
+          "name": "Купаты Атяшево свиные гриль охлажденные 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1204544-main/320x320.jpeg?updated_at=2024-12-18T13:05:18.561Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1204544-main/800x800.jpeg?updated_at=2024-12-18T13:05:18.561Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.9,
+            "rates_count": 11732
+          },
+          "promo": null,
+          "prices": {
+            "regular": "149.99",
+            "discount": "129.99"
+          },
+          "labels": [
+            {
+              "label": "-13%",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "3.00"
+        },
+        {
+          "plu": 4059069,
+          "name": "Купаты свиные Рестория фирменные охлажденные 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1205537-main/320x320.jpeg?updated_at=2024-12-18T13:05:25.980Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1205537-main/800x800.jpeg?updated_at=2024-12-18T13:05:25.980Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.89,
+            "rates_count": 8591
+          },
+          "promo": null,
+          "prices": {
+            "regular": "166.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "3.00"
+        }
+      ]
+    },
+    {
+      "id": "73C2423",
+      "name": "Фарш",
+      "advert": null,
+      "products_count": 6,
+      "products": [
+        {
+          "plu": 3673806,
+          "name": "Фарш Мираторг свино-говяжий домашний 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1441037-main/320x320.jpeg?updated_at=2024-12-18T08:26:04.113Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1441037-main/800x800.jpeg?updated_at=2024-12-18T08:26:04.113Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.88,
+            "rates_count": 3674
+          },
+          "promo": null,
+          "prices": {
+            "regular": "228.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "7.00"
+        },
+        {
+          "plu": 3387627,
+          "name": "Фарш домашний Рестория 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1168282-main/320x320.jpeg?updated_at=2024-12-10T09:02:56.950Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1168282-main/800x800.jpeg?updated_at=2024-12-10T09:02:56.950Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.9,
+            "rates_count": 29284
+          },
+          "promo": null,
+          "prices": {
+            "regular": "179.99",
+            "discount": "149.99"
+          },
+          "labels": [
+            {
+              "label": "-16%",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "400 мл",
+          "has_age_restriction": false,
+          "stock_limit": "5.00"
+        },
+        {
+          "plu": 3398465,
+          "name": "Фарш говяжий Рестория 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1168769-main/320x320.jpeg?updated_at=2024-11-25T16:57:41.823Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1168769-main/800x800.jpeg?updated_at=2024-11-25T16:57:41.823Z",
+              "https://photos.okolo.app/product/25186dde7cee9b73cb8e1e9b2fb2e356-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.88,
+            "rates_count": 20216
+          },
+          "promo": null,
+          "prices": {
+            "regular": "252.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "14.00"
+        },
+        {
+          "plu": 4243884,
+          "name": "Фарш Петелинка Премиум из филе грудки охлажденный 450г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1465829-main/320x320.jpeg?updated_at=2024-12-18T13:16:04.984Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1465829-main/800x800.jpeg?updated_at=2024-12-18T13:16:04.984Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.91,
+            "rates_count": 8679
+          },
+          "promo": null,
+          "prices": {
+            "regular": "172.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "450 г",
+          "has_age_restriction": false,
+          "stock_limit": "10.00"
+        },
+        {
+          "plu": 4323016,
+          "name": "Фарш Гастроном №1 свиной охлажденный 300г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1579875-main/320x320.jpeg?updated_at=2024-11-19T10:12:10.441Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1579875-main/800x800.jpeg?updated_at=2024-11-19T10:12:10.441Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.89,
+            "rates_count": 12720
+          },
+          "promo": null,
+          "prices": {
+            "regular": "100.79",
+            "discount": "89.99"
+          },
+          "labels": [
+            {
+              "label": "-10%",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "300 г",
+          "has_age_restriction": false,
+          "stock_limit": "11.00"
+        },
+        {
+          "plu": 4288090,
+          "name": "Фарш Мираторг говяжий охлажденный 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1506810-main/320x320.jpeg?updated_at=2024-12-02T15:55:49.216Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1506810-main/800x800.jpeg?updated_at=2024-12-02T15:55:49.216Z",
+              "https://photos.okolo.app/product/57355ba91fc31d55f73538ba1395e8c9-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.85,
+            "rates_count": 5563
+          },
+          "promo": null,
+          "prices": {
+            "regular": "309.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "9.00"
+        }
+      ]
+    },
+    {
+      "id": "73C9763",
+      "name": "Субпродукты",
+      "advert": null,
+      "products_count": 6,
+      "products": [
+        {
+          "plu": 3628376,
+          "name": "Печень цыпленка Петелинка охлажденная 500г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1182247-main/320x320.jpeg?updated_at=2024-11-19T10:16:15.463Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1182247-main/800x800.jpeg?updated_at=2024-11-19T10:16:15.463Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.91,
+            "rates_count": 7164
+          },
+          "promo": null,
+          "prices": {
+            "regular": "172.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "500 г",
+          "has_age_restriction": false,
+          "stock_limit": "8.00"
+        },
+        {
+          "plu": 3332004,
+          "name": "Печень говяжья замороженная",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1165877-main/320x320.jpeg?updated_at=2024-12-18T12:59:35.061Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1165877-main/800x800.jpeg?updated_at=2024-12-18T12:59:35.061Z",
+              "https://photos.okolo.app/product/c14429054e5a7f26db7e1c03ed502807-additional/800x800.jpeg",
+              "https://photos.okolo.app/product/9a4a5f24ba328c05e50056ec26a18870-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "кг",
+          "step": "1.2",
+          "rating": {
+            "rating_average": 4.84,
+            "rates_count": 7202
+          },
+          "promo": null,
+          "prices": {
+            "regular": "305.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "8.42"
+        },
+        {
+          "plu": 3628375,
+          "name": "Желудки куриные Петелинка мышечные охлажденные 500г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1182246-main/320x320.jpeg?updated_at=2024-11-19T10:16:15.503Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1182246-main/800x800.jpeg?updated_at=2024-11-19T10:16:15.503Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.87,
+            "rates_count": 3531
+          },
+          "promo": null,
+          "prices": {
+            "regular": "163.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "500 г",
+          "has_age_restriction": false,
+          "stock_limit": "7.00"
+        },
+        {
+          "plu": 4365651,
+          "name": "Рагу Мираторг из мраморной говядины замороженное 1000г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1801698-main/320x320.jpeg?updated_at=2024-12-03T17:30:31.259Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1801698-main/800x800.jpeg?updated_at=2024-12-03T17:30:31.259Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.24,
+            "rates_count": 694
+          },
+          "promo": null,
+          "prices": {
+            "regular": "149.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "3.00"
+        },
+        {
+          "plu": 4257203,
+          "name": "Шеи цыпленка Первая Свежесть охлажденные 600г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1473463-main/320x320.jpeg?updated_at=2024-11-19T10:15:59.457Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1473463-main/800x800.jpeg?updated_at=2024-11-19T10:15:59.457Z"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.88,
+            "rates_count": 1962
+          },
+          "promo": null,
+          "prices": {
+            "regular": "103.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "600 г",
+          "has_age_restriction": false,
+          "stock_limit": "4.00"
+        },
+        {
+          "plu": 3332005,
+          "name": "Язык говяжий Красная Цена замороженный",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1165878-main/320x320.jpeg?updated_at=2024-12-18T12:59:34.529Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1165878-main/800x800.jpeg?updated_at=2024-12-18T12:59:34.529Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "1.2",
+          "rating": {
+            "rating_average": 4.86,
+            "rates_count": 597
+          },
+          "promo": null,
+          "prices": {
+            "regular": "999.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "6.25"
+        }
+      ]
+    },
+    {
+      "id": "73C9764",
+      "name": "Замороженное мясо",
+      "advert": null,
+      "products_count": 3,
+      "products": [
+        {
+          "plu": 3332004,
+          "name": "Печень говяжья замороженная",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1165877-main/320x320.jpeg?updated_at=2024-12-18T12:59:35.061Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1165877-main/800x800.jpeg?updated_at=2024-12-18T12:59:35.061Z",
+              "https://photos.okolo.app/product/c14429054e5a7f26db7e1c03ed502807-additional/800x800.jpeg",
+              "https://photos.okolo.app/product/9a4a5f24ba328c05e50056ec26a18870-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "кг",
+          "step": "1.2",
+          "rating": {
+            "rating_average": 4.84,
+            "rates_count": 7202
+          },
+          "promo": null,
+          "prices": {
+            "regular": "305.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "8.42"
+        },
+        {
+          "plu": 3312979,
+          "name": "Ножки свиные замороженные",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1165598-main/320x320.jpeg?updated_at=2024-12-18T12:59:29.761Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1165598-main/800x800.jpeg?updated_at=2024-12-18T12:59:29.761Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "1.5",
+          "rating": {
+            "rating_average": 4.85,
+            "rates_count": 2636
+          },
+          "promo": null,
+          "prices": {
+            "regular": "144.99",
+            "discount": "99.99"
+          },
+          "labels": [
+            {
+              "label": "-31%",
+              "bg_color": "#FBAC29",
+              "text_color": "#130000"
+            }
+          ],
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "7.21"
+        },
+        {
+          "plu": 3332005,
+          "name": "Язык говяжий Красная Цена замороженный",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1165878-main/320x320.jpeg?updated_at=2024-12-18T12:59:34.529Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1165878-main/800x800.jpeg?updated_at=2024-12-18T12:59:34.529Z"
+            ]
+          },
+          "uom": "кг",
+          "step": "1.2",
+          "rating": {
+            "rating_average": 4.86,
+            "rates_count": 597
+          },
+          "promo": null,
+          "prices": {
+            "regular": "999.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "Цена за 1 кг",
+          "has_age_restriction": false,
+          "stock_limit": "6.25"
+        }
+      ]
+    },
+    {
+      "id": "73C9768",
+      "name": "Халяль",
+      "advert": null,
+      "products_count": 1,
+      "products": [
+        {
+          "plu": 3667460,
+          "name": "Гуляш из говядины Эколь Халяль 400г",
+          "image_links": {
+            "small": [
+              "https://photos.okolo.app/product/1188472-main/320x320.jpeg?updated_at=2024-12-18T13:02:48.930Z"
+            ],
+            "normal": [
+              "https://photos.okolo.app/product/1188472-main/800x800.jpeg?updated_at=2024-12-18T13:02:48.930Z",
+              "https://photos.okolo.app/product/8d7d5bb66a6b463b9432a0e84924f4ed-additional/800x800.jpeg",
+              "https://photos.okolo.app/product/dd51a7620f593e3a3f8599e539747e3e-additional/800x800.jpeg",
+              "https://photos.okolo.app/product/56419d3d68073dd1b14bec0cfece8ee1-additional/800x800.jpeg"
+            ]
+          },
+          "uom": "шт",
+          "step": "1.0",
+          "rating": {
+            "rating_average": 4.69,
+            "rates_count": 2874
+          },
+          "promo": null,
+          "prices": {
+            "regular": "405.99",
+            "discount": null
+          },
+          "labels": null,
+          "property_clarification": "400 г",
+          "has_age_restriction": false,
+          "stock_limit": "2.00"
+        }
+      ]
+    }
+  ]
+}

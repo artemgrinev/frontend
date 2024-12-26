@@ -51,6 +51,9 @@ const props = defineProps({
     default: "1 декабря 2000",
   },
 });
+const date = new Date(props.datePublished);
+const options = { day: "numeric", month: "long", year: "numeric" };
+const formattedDate = date.toLocaleDateString("ru-RU", options);
 </script>
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 pb-10 md:pt-6">
@@ -135,7 +138,7 @@ const props = defineProps({
             size="18"
           />
           <span class="inline-block text-gray-500 text-sm pr-4 pl-1">{{
-            datePublished
+            formattedDate
           }}</span>
         </div>
       </div>

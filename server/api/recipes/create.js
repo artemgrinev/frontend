@@ -1,5 +1,3 @@
-// server/api/add-recipe.js
-
 import { PrismaClient } from "@prisma/client";
 import { recipeSchema } from "../../validation/recipeSchema";
 import { transliterate } from "~/utils/transliterate";

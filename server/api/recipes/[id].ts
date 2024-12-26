@@ -1,36 +1,47 @@
-import { db } from "~/server/db";
+import { PrismaClient } from "@prisma/client";
 import serverLogger from "~/server/utils/logger";
 import { sendError } from "h3";
 import { z } from "zod";
 import { ZodError } from "zod";
+const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
   const params = event.context.params as Record<string, string>;
   const id = params.id;
-  serverLogger.info({ productId: id, message: "Запрос продукта" });
+
+  serverLogger.info({ recipeId: id, message: "Запрос рецепта" });
 
   try {
     z.number().positive().parse(Number(id));
-    const product = await db.product.findUnique({
+    const recipe = await prisma.recipe.findUnique({
       where: { id: Number(id) },
       include: {
-        similarProducts: true,
+        ingredients: {
+          include: {
+            mainProduct: { include: { similarProducts: true } },
+          },
+        },
+        instructions: true,
+        tags: true,
+        category: true,
+        cuisine: true,
       },
     });
 
-    if (!product) {
+    if (!recipe) {
       const notFoundError = createError({
         statusCode: 404,
-        statusMessage: "Product not found",
+        statusMessage: "Recipe not found",
         data: {
-          id: id,
+          field: "id",
         },
       });
       sendError(event, notFoundError);
-      serverLogger.info({ productId: id, message: "Продукт не найден" });
+      serverLogger.info({ recipeId: id, message: "Рецепт не найден" });
       return;
     }
-    return product;
+
+    return recipe;
   } catch (error) {
     if (error instanceof ZodError) {
       const validationError = createError({
@@ -38,11 +49,10 @@ export default defineEventHandler(async (event) => {
         statusMessage: "Validation Error",
         data: {
           field: "id",
-          data: id,
         },
       });
       sendError(event, validationError);
-      serverLogger.info({ productId: id, message: "Ошибка валидации" });
+      serverLogger.info({ recipeId: id, message: "Ошибка валидации рецепта" });
     } else {
       const trace = (error as Error).stack || "No stack trace available";
       const parseTrace = trace.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
@@ -53,11 +63,11 @@ export default defineEventHandler(async (event) => {
       sendError(event, internalServerError);
       serverLogger.error({
         message: "Server error",
-        metod: "get product by id",
-        detail: { data: { productID: id, error, trace: parseTrace } },
+        metod: "get recipe by id",
+        detail: { data: { recipeID: id, error, trace: parseTrace } },
       });
     }
   } finally {
-    await db.$disconnect();
+    await prisma.$disconnect();
   }
 });

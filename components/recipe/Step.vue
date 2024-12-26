@@ -30,6 +30,7 @@ const props = defineProps({
       width="256"
       height="170"
       fit="cover"
+      :src="img"
     />
     <div class="flex flex-col md:pl-6 p-3 leading-normal">
       <h5 class="mb-2 text-2xl font-semibold tracking-tight">

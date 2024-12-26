@@ -6,20 +6,6 @@ const props = defineProps({
     default: [],
   },
 });
-
-const loading = ref(true);
-
-watch(
-  () => props.items,
-  (newItems) => {
-    if (newItems.length > 0) {
-      loading.value = false;
-    } else {
-      loading.value = true;
-    }
-  },
-  { immediate: true }
-);
 </script>
 
 <template>
@@ -46,13 +32,16 @@ watch(
       },
     }"
   >
-    <SwiperSlide v-for="item in items" :key="item.productId">
+    <SwiperSlide v-for="item in items" :key="item.id">
       <CardProductSlide
-        :title="item.product.title"
-        :img="item.product.thumbnail"
-        :weight="item.product.weight"
-        :price="item.product.price"
-        :rating="item.product.rating"
+        :title="item.title"
+        :img="item.thumbnail"
+        :weight="item.weight"
+        :amount="item.amount"
+        :price="item.price"
+        :rating="item.rating"
+        :product-id="item.id"
+        :similar-products="item.similarProducts"
       />
     </SwiperSlide>
   </Swiper>

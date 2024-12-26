@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 
 definePageMeta({
   layout: "content",
@@ -13,8 +13,8 @@ const links = computed(() => [
   { label: recipeData.value?.title },
 ]);
 
-const { ingredients, products, instructions } = recipeData.value || {};
-const isLoading = computed(() => status.value === "pending");
+const { ingredients, instructions } = recipeData.value || {};
+const products = ingredients.map((ingredient) => ingredient.mainProduct);
 </script>
 
 <template>
@@ -37,7 +37,7 @@ const isLoading = computed(() => status.value === "pending");
   />
   <RecipeDetailRows :steps-items="instructions">
     <template v-slot:product-header>
-      <RecipeProductHeader />
+      <RecipeProductHeader :ingredients="ingredients" />
     </template>
     <template v-slot:swiper>
       <SwiperProductsRB :items="products" />
