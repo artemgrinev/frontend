@@ -14,7 +14,20 @@ const links = computed(() => [
 ]);
 
 const { ingredients, instructions } = recipeData.value || {};
+
 const products = ingredients.map((ingredient) => ingredient.mainProduct);
+// в методе ниже нужно будет добавить обработку события, так что бы при изменение продукта
+// изменялся и масив с ингредиентами или создать новый реактивный масив в который буду добавлять  уже измененное состояние
+const handleProductUpdate = (productReplacementIds) => {
+  console.log("вызов");
+  let test = ingredients.map((ingredient) => {
+    if (productReplacementIds.currentProductId === ingredient.mainProductId) {
+      console.log(ingredient.title);
+    } else {
+      console.log(productReplacementIds.currentProductId);
+    }
+  });
+};
 </script>
 
 <template>
@@ -40,7 +53,10 @@ const products = ingredients.map((ingredient) => ingredient.mainProduct);
       <RecipeProductHeader :ingredients="ingredients" />
     </template>
     <template v-slot:swiper>
-      <SwiperProductsRB :items="products" />
+      <SwiperProductsRB
+        :items="products"
+        @productUpdated="handleProductUpdate"
+      />
     </template>
 
     <template v-slot:ingredients>

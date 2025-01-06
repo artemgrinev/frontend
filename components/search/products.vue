@@ -35,6 +35,7 @@
 </template>
 
 <script setup>
+const emit = defineEmits(["productAdded"]);
 const props = defineProps({
   similarProducts: {
     type: Array,
@@ -44,13 +45,14 @@ const props = defineProps({
 });
 const isOpen = ref(false);
 const commandPaletteRef = ref();
+const addedProduct = ref({});
 const similarProducts = props.similarProducts.map((product) => ({
   id: product.id,
   label: product.title,
   suffix: product.price ? `${Math.floor(product.price)} ₽` : "нет цены",
   click: () => {
-    console.log(product.id);
-    isOpen.value = false;
+    addedProduct.value = product;
+    handleAddProducts(addedProduct);
   },
 }));
 
@@ -101,7 +103,17 @@ function onSelect(option) {
     option.click();
   }
 }
-const handleAddProducts = () => {
+const handleAddProducts = (addedProduct) => {
+  console.log("Добавляем продукт handleAddProducts:", addedProduct.value);
+  emit("productAdded", {
+    id: addedProduct.value.id,
+    title: addedProduct.value.title,
+    thumbnail: addedProduct.value.thumbnail,
+    weight: addedProduct.value.weight,
+    amount: addedProduct.value.amount,
+    price: addedProduct.value.price,
+    rating: addedProduct.value.rating,
+  });
   isOpen.value = false;
 };
 </script>

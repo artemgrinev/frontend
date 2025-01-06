@@ -6,6 +6,19 @@ const props = defineProps({
     default: [],
   },
 });
+const emit = defineEmits(["productUpdated"]);
+const products = ref([...props.items]);
+
+const updateProduct = (id, updatedProduct) => {
+  let productReplacementIds = {
+    currentProductId: id,
+    newProductId: updatedProduct.id,
+  };
+  const index = products.value.findIndex((product) => product.id === id);
+  products.value[index] = { ...products.value[index], ...updatedProduct };
+  console.log("productReplacementIds:", productReplacementIds);
+  emit("productUpdated", productReplacementIds);
+};
 </script>
 
 <template>
@@ -32,16 +45,19 @@ const props = defineProps({
       },
     }"
   >
-    <SwiperSlide v-for="item in items" :key="item.id">
+    <SwiperSlide v-for="item in products" :key="item.id">
       <CardProductSlide
         :title="item.title"
-        :img="item.thumbnail"
+        :thumbnail="item.thumbnail"
         :weight="item.weight"
         :amount="item.amount"
         :price="item.price"
         :rating="item.rating"
         :product-id="item.id"
         :similar-products="item.similarProducts"
+        @productAdded="
+          (updatedProduct) => updateProduct(item.id, updatedProduct)
+        "
       />
     </SwiperSlide>
   </Swiper>
