@@ -50,9 +50,15 @@ const similarProducts = props.similarProducts.map((product) => ({
   id: product.id,
   label: product.title,
   suffix: product.price ? `${Math.floor(product.price)} ₽` : "нет цены",
-  click: () => {
-    addedProduct.value = product;
-    handleAddProducts(addedProduct);
+  click: async () => {
+    try {
+      const fetchedProduct = await $fetch(`/api/products/${product.id}`);
+      addedProduct.value = fetchedProduct;
+      handleAddProducts(addedProduct);
+      console.log("addedProduct:", addedProduct.value);
+    } catch (error) {
+      console.error("Ошибка при добавлении продукта:", error);
+    }
   },
 }));
 
@@ -105,15 +111,7 @@ function onSelect(option) {
 }
 const handleAddProducts = (addedProduct) => {
   console.log("Добавляем продукт handleAddProducts:", addedProduct.value);
-  emit("productAdded", {
-    id: addedProduct.value.id,
-    title: addedProduct.value.title,
-    thumbnail: addedProduct.value.thumbnail,
-    weight: addedProduct.value.weight,
-    amount: addedProduct.value.amount,
-    price: addedProduct.value.price,
-    rating: addedProduct.value.rating,
-  });
+  emit("productAdded", addedProduct.value);
   isOpen.value = false;
 };
 </script>

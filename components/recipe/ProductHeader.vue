@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { calcProducts } from "~/utils/recipe/calculatePrice";
-import type { Ingredient } from "~/utils/recipe/schemas";
 const props = defineProps({
-  ingredients: {
-    type: Array as () => Ingredient[],
+  productsPrice: {
+    type: Number,
     required: true,
   },
 });
-let productsPrice = calcProducts(props.ingredients);
+
 const people = [
   {
     id: "benjamincanac",
@@ -49,7 +47,7 @@ const selected = ref(people[0]);
       <UBadge
         class="mr-3 px-6 text-md"
         variant="soft"
-        :label="`${productsPrice} ₽`"
+        :label="`${props.productsPrice} ₽`"
       />
       <USelectMenu
         v-model="selected"

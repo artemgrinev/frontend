@@ -1,18 +1,20 @@
-<script setup>
+<script setup lang="ts">
+import type { Product } from "~/interfaces/product/Product";
+
 const props = defineProps({
   items: {
-    type: Object,
+    type: Array as () => Product[],
     required: true,
-    default: [],
+    default: () => [],
   },
 });
 const emit = defineEmits(["productUpdated"]);
-const products = ref([...props.items]);
+const products = computed(() => [...props.items]);
 
-const updateProduct = (id, updatedProduct) => {
+const updateProduct = (id: number, updatedProduct: Product) => {
   let productReplacementIds = {
     currentProductId: id,
-    newProductId: updatedProduct.id,
+    newProductId: updatedProduct,
   };
   const index = products.value.findIndex((product) => product.id === id);
   products.value[index] = { ...products.value[index], ...updatedProduct };
@@ -47,14 +49,7 @@ const updateProduct = (id, updatedProduct) => {
   >
     <SwiperSlide v-for="item in products" :key="item.id">
       <CardProductSlide
-        :title="item.title"
-        :thumbnail="item.thumbnail"
-        :weight="item.weight"
-        :amount="item.amount"
-        :price="item.price"
-        :rating="item.rating"
-        :product-id="item.id"
-        :similar-products="item.similarProducts"
+        :product="item"
         @productAdded="
           (updatedProduct) => updateProduct(item.id, updatedProduct)
         "

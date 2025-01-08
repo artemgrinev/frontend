@@ -1,33 +1,64 @@
-<script setup>
-import { computed } from "vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
+
+import { calcProducts } from "~/utils/recipe/calculatePrice";
+
+import type { Recipe } from "~/interfaces/recipe/Recipe";
+import type { Instruction } from "~/interfaces/recipe/Instruction";
+import type { Ingredient } from "~/interfaces/recipe/Ingredient";
+import type { ReplacementProduct } from "~/interfaces/product/Replacement";
 
 definePageMeta({
   layout: "content",
 });
 
-const { data: recipeData, status } = await useFetch("/api/recipes/1");
+const recipe = ref<Recipe | null>(null);
+const ingredients = ref<Ingredient[]>([]);
+let instructions: Instruction[] = [];
+
+const { data, error } = await useFetch("/api/recipes/1");
+
+if (!error.value && data.value) {
+  recipe.value = data.value as Recipe;
+  ingredients.value = recipe.value.ingredients;
+  instructions = recipe.value.instructions;
+  console.log("recipe:", recipe.value.title);
+}
+
 const links = computed(() => [
   { label: "Главная", to: "/" },
   { label: "Рецепты", to: "/recipes" },
   { label: "Супы", to: "/recipes/soups" },
-  { label: recipeData.value?.title },
+  { label: recipe.value?.title || "Без названия", to: "#" },
 ]);
 
-const { ingredients, instructions } = recipeData.value || {};
+const products = computed(() =>
+  ingredients.value.map((ingredient) => ingredient.mainProduct)
+);
 
-const products = ingredients.map((ingredient) => ingredient.mainProduct);
-// в методе ниже нужно будет добавить обработку события, так что бы при изменение продукта
-// изменялся и масив с ингредиентами или создать новый реактивный масив в который буду добавлять  уже измененное состояние
-const handleProductUpdate = (productReplacementIds) => {
-  console.log("вызов");
-  let test = ingredients.map((ingredient) => {
+const handleProductUpdate = (productReplacementIds: ReplacementProduct) => {
+  ingredients.value = ingredients.value.map((ingredient) => {
     if (productReplacementIds.currentProductId === ingredient.mainProductId) {
-      console.log(ingredient.title);
-    } else {
-      console.log(productReplacementIds.currentProductId);
+      console.log(`Обновляем продукт: ${ingredient.title}`);
+
+      const updatedIngredient = {
+        ...ingredient,
+        mainProductId: productReplacementIds.newProductId.id,
+        mainProduct: productReplacementIds.newProductId,
+      };
+
+      console.log("Обновленный ингредиент:", updatedIngredient);
+      return updatedIngredient;
     }
+    return ingredient;
   });
+
+  console.log("Ингредиенты после обновления:", ingredients.value);
 };
+
+const productsPrice = computed(() => {
+  return calcProducts(ingredients.value);
+});
 </script>
 
 <template>
@@ -37,20 +68,20 @@ const handleProductUpdate = (productReplacementIds) => {
     :ui="{ li: 'text-gray-500' }"
   />
   <RecipeDetailTop
-    :title="recipeData.title"
-    :image="recipeData.image"
-    :description="recipeData.description"
-    :cook-time-minutes="recipeData.cookTimeMinutes"
-    :prep-time-minutes="recipeData.prepTimeMinutes"
-    :difficulty="recipeData.difficulty"
-    :preliminary-preparation="recipeData.preliminaryPreparation"
-    :view-count="recipeData.viewCount"
-    :review-count="recipeData.reviewCount"
-    :date-published="recipeData.datePublished"
+    :title="recipe?.title"
+    :image="recipe?.image"
+    :description="recipe?.description"
+    :cook-time-minutes="recipe?.cookTimeMinutes"
+    :prep-time-minutes="recipe?.prepTimeMinutes"
+    :difficulty="recipe?.difficulty"
+    :preliminary-preparation="recipe?.preliminaryPreparation"
+    :view-count="recipe?.viewCount"
+    :review-count="recipe?.reviewCount"
+    :date-published="recipe?.datePublished"
   />
   <RecipeDetailRows :steps-items="instructions">
     <template v-slot:product-header>
-      <RecipeProductHeader :ingredients="ingredients" />
+      <RecipeProductHeader :productsPrice="productsPrice" />
     </template>
     <template v-slot:swiper>
       <SwiperProductsRB

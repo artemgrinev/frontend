@@ -1,78 +1,20 @@
-<script setup>
+<script setup lang="ts">
 import { ref, defineProps } from "vue";
+import type { Product } from "~/interfaces/product/Product";
 const emit = defineEmits(["productAdded"]);
-const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-    default: "",
-  },
-  thumbnail: {
-    type: String,
-    required: false,
-  },
-  link: {
-    type: String,
-    required: false,
-    default: "#",
-  },
-  weight: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-  amount: {
-    type: String,
-    required: true,
-    default: "",
-  },
-  price: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-  rating: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  similarProducts: {
-    type: Array,
-    required: true,
-    default: () => [],
-  },
-  productId: {
-    type: Number,
-    required: true,
-  },
-});
+interface Props {
+  product: Product;
+}
+const props = defineProps<Props>();
 
-const currentProduct = ref({
-  title: props.title,
-  thumbnail: props.thumbnail,
-  link: props.link,
-  weight: props.weight,
-  amount: props.amount,
-  price: props.price,
-  rating: props.rating,
-});
-
+const product = ref<Product>(props.product);
+const handleProductAdded = (product: Product) => {
+  emit("productAdded", product);
+};
 const imageLoaded = ref(false);
 
 const handleImageLoad = () => {
   imageLoaded.value = true;
-};
-
-const handleProductAdded = (product) => {
-  // Обновляем данные текущего продукта
-  console.log("ProductSlide -> handleProductAdded");
-  console.log("productId:", product.id);
-  currentProduct.value = { ...currentProduct.value, ...product };
-  console.log("currentProductID:", currentProduct.value.id);
-  emit("productAdded", {
-    id: currentProduct.value.id,
-    ...currentProduct.value,
-  });
 };
 </script>
 
@@ -80,14 +22,14 @@ const handleProductAdded = (product) => {
   <div class="ProductCard__Slide">
     <div class="bg-zinc-50 rounded-xl">
       <!-- Image -->
-      <a :href="currentProduct.link" class="relative block">
+      <a :href="product.url" class="relative block">
         <NuxtImg
           class="relative rounded-xl object-cover"
           :class="{ 'opacity-0': !imageLoaded, 'opacity-100': imageLoaded }"
           width="198"
           height="198"
           @load="handleImageLoad"
-          :src="`https://storage.yandexcloud.net/bludce/images/products/${currentProduct.thumbnail}`"
+          :src="`https://storage.yandexcloud.net/bludce/images/products/${product.thumbnail}`"
           alt="product image"
         />
         <USkeleton
@@ -103,39 +45,39 @@ const handleProductAdded = (product) => {
             name="material-symbols:kid-star"
             size=""
           />
-          <span class="inline-block text-sm">{{ currentProduct.rating }}</span>
+          <span class="inline-block text-sm">{{ product.rating }}</span>
         </div>
       </a>
 
       <!-- Content -->
       <div class="px-3 pb-4 pt-2">
-        <a class="text-gray-900 overflow-hidden" :href="currentProduct.link">
+        <a class="text-gray-900 overflow-hidden" :href="product.url">
           <h5
             class="ProductCard_Slide__title mb-1 overflow-hidden text-ellipsis whitespace-normal"
           >
-            {{ currentProduct.title }}
+            {{ product.title }}
           </h5>
         </a>
         <div class="flex justify-between items-center mb-2">
           <span class="text-gray-400 text-sm"
-            >{{ currentProduct.weight }} {{ currentProduct.amount }}</span
+            >{{ product.weight }} {{ product.amount }}</span
           >
           <UBadge
             class="md:hidden block bg-gray-100 font-bold text-gray-900"
             variant="soft"
           >
-            {{ currentProduct.price }} ₽
+            {{ product.price }} ₽
           </UBadge>
         </div>
         <div class="md:flex justify-between items-center">
           <div class="hidden md:block">
             <UBadge class="bg-gray-100 font-bold text-gray-900" variant="soft">
-              {{ currentProduct.price }} ₽
+              {{ product.price }} ₽
             </UBadge>
           </div>
           <div class="w-full md:w-auto">
             <SearchProducts
-              :similarProducts="props.similarProducts"
+              :similarProducts="product.similarProducts"
               @productAdded="handleProductAdded"
             />
           </div>
