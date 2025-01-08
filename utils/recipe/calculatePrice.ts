@@ -1,12 +1,14 @@
 import { gramsPerUnit } from "./measurementUnits";
-import type { Ingredient } from "./schemas";
+import type { Ingredient } from "~/interfaces/recipe/Ingredient";
 
 export function calcProducts(ingredients: Ingredient[]): number {
   return ingredients.reduce((total, i) => {
     let productCost = 0;
     const mainProductAmount = i.mainProduct.amount.replace(".", "");
     const ingredientAmount = i.amount.replace(".", "");
-
+    console.log(
+      `name: ${i.title} pack: ${i.mainProduct.pack} productAmount: ${mainProductAmount} ingredientAmount: ${ingredientAmount}`
+    );
     if (i.mainProduct.pack) {
       // Если продукт в упаковке и его вес в кг или лт, а ингредиент в шт.
       if (
@@ -18,6 +20,20 @@ export function calcProducts(ingredients: Ingredient[]): number {
           Math.ceil((i.count * gramsPerUnit) / (i.mainProduct.weight * 1000));
         console.log(
           "Если продукт в упаковке и его вес в кг или лт, а ингредиент в шт."
+        );
+        console.log(`${i.title}: ${i.count} ${i.amount} price: ${productCost}`);
+      } else if (
+        // Если продукт в упаковке и его вес в гр или мл, а ингредиент в гр или мл.
+        ((mainProductAmount === "гр" ||
+          mainProductAmount === "мл" ||
+          mainProductAmount === "г") &&
+          ingredientAmount === "гр") ||
+        ingredientAmount === "мл"
+      ) {
+        productCost =
+          i.mainProduct.price * Math.ceil(i.count / i.mainProduct.weight);
+        console.log(
+          "Если продукт в упаковке и его вес в гр или мл, а ингредиент в гр или мл."
         );
         console.log(`${i.title}: ${i.count} ${i.amount} price: ${productCost}`);
       } else if (
