@@ -27,23 +27,18 @@ const updateProduct = (id: number, updatedProduct: Product) => {
   <Swiper
     :modules="[SwiperAutoplay]"
     :slides-per-view="4"
-    :space-between="5"
     :breakpoints="{
       1280: {
         slidesPerView: 4,
-        spaceBetween: 10,
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 10,
       },
       640: {
         slidesPerView: 3.5,
-        spaceBetween: 10,
       },
       320: {
         slidesPerView: 2.5,
-        spaceBetween: 10,
       },
     }"
   >
@@ -70,6 +65,7 @@ const updateProduct = (id: number, updatedProduct: Product) => {
   height: auto;
   width: auto;
   border-radius: 16px;
+  margin-right: 10px;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(34, 60, 80, 0.22);
   -moz-box-shadow: 0px 2px 5px 0px rgba(34, 60, 80, 0.22);
   box-shadow: 0px 2px 5px 0px rgba(34, 60, 80, 0.22);

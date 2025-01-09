@@ -24,7 +24,10 @@ const handleImageLoad = () => {
       <!-- Image -->
       <a :href="product.url" class="relative block">
         <NuxtImg
-          class="relative rounded-xl object-cover"
+          fit="contain"
+          quality="100"
+          :modifiers="{ b: '#F4F4F5' }"
+          class="relative rounded-xl bg-zinc-100"
           :class="{ 'opacity-0': !imageLoaded, 'opacity-100': imageLoaded }"
           width="198"
           height="198"
@@ -71,7 +74,11 @@ const handleImageLoad = () => {
         </div>
         <div class="md:flex justify-between items-center">
           <div class="hidden md:block">
-            <UBadge class="bg-gray-100 font-bold text-gray-900" variant="soft">
+            <UBadge
+              class="bg-gray-100 font-bold text-gray-900"
+              size="lg"
+              variant="soft"
+            >
               {{ product.price }} ₽
             </UBadge>
           </div>

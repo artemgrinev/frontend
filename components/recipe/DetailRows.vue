@@ -71,7 +71,7 @@ const stepsCount = computed(() => props.stepsItems.length);
 @media (min-width: 1024px) {
   .Recipe__Col._ingredients {
     position: sticky;
-    top: 0;
+    top: 75px;
   }
 }
 </style>

@@ -11,23 +11,39 @@
       ref="commandPaletteRef"
       :groups="groups"
       :autoselect="false"
+      :fuse="{ resultLimit: 10, fuseOptions: { threshold: 0.1 } }"
       @update:model-value="onSelect"
     >
       <template #empty-state>
         <div class="flex flex-col items-center justify-center py-6 gap-3">
           <span class="italic text-sm"
-            >Добавте основной продукт<br />Затем добавте несколько похожих
-            продуктов</span
+            >Продуктов по вашему запросу не найдено</span
           >
-          <UButton label="Найти продукты" />
+          <span class="italic text-sm">Попробуйте изменить запрос</span>
+          <UButton label="Закрыть" @click="close" />
         </div>
       </template>
-      <template
-        #action-command="{ command }"
-        style="display: flex; justify-content: center"
-      >
-        <div class="flex justify-center w-screen">
-          <UButton :label="command.label" @click="handleAddProducts" />
+      <template #products-command="{ command }">
+        <div class="flex items-center justify-between w-screen">
+          <NuxtImg
+            fit="contain"
+            :modifiers="{ b: '#F4F4F5' }"
+            quality="100"
+            densities="x1 x2"
+            class="flex rounded-xl mr-2 bg-zinc-100"
+            width="68"
+            height="68"
+            :src="`https://storage.yandexcloud.net/bludce/images/products/${command.img}`"
+            alt="product image"
+          />
+          <div class="flex-grow">
+            <span class="flex justify-start text-sm">{{ command.label }}</span>
+          </div>
+          <div class="flex">
+            <span class="flex justify-end text-sm w-16">{{
+              command.suffix
+            }}</span>
+          </div>
         </div>
       </template>
     </UCommandPalette>
@@ -81,10 +97,19 @@ const groups = computed(() =>
               return products.map((product) => ({
                 id: product.id,
                 label: product.title,
+                img: product.thumbnail,
                 suffix: product.price
                   ? `${Math.floor(product.price)} ₽`
                   : "нет цены",
-                click: () => {},
+                click: () => {
+                  try {
+                    addedProduct.value = product;
+                    handleAddProducts(addedProduct);
+                    console.log("addedProduct:", addedProduct.value);
+                  } catch (error) {
+                    console.error("Ошибка при добавлении продукта:", error);
+                  }
+                },
               }));
             } catch (error) {
               console.error("Ошибка при выполнении поиска продуктов:", error);
@@ -112,6 +137,9 @@ function onSelect(option) {
 const handleAddProducts = (addedProduct) => {
   console.log("Добавляем продукт handleAddProducts:", addedProduct.value);
   emit("productAdded", addedProduct.value);
+  isOpen.value = false;
+};
+const close = () => {
   isOpen.value = false;
 };
 </script>
