@@ -1,3 +1,5 @@
+<!-- TODO: Создать скелетон для карточек продуктов -->
+
 <script setup lang="ts">
 import type { Product } from "~/interfaces/product/Product";
 

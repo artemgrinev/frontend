@@ -11,6 +11,8 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "@nuxt/icon",
     "@prisma/nuxt",
+    "@nuxtjs/device",
+    "@pinia/nuxt",
   ],
   tailwindcss: {
     cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
@@ -42,6 +44,9 @@ export default defineNuxtConfig({
   },
   prisma: {
     autoSetupPrisma: true,
+  },
+  pinia: {
+    storesDirs: ["./store/**"],
   },
   runtimeConfig: {
     public: {

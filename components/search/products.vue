@@ -1,11 +1,13 @@
+<!-- TODO: Реализовать в поиске загрузку изоброжений малого формата. -->
 <template>
   <UButton class="mr-3" label="Заменить" @click="isOpen = true" />
-  <UModal v-model="isOpen">
+  <UModal v-model="isOpen" :fullscreen="$device.isMobile">
     <UCommandPalette
-      :empty-state="{
-        icon: 'i-heroicons-magnifying-glass-20-solid',
-        label: 'Выберите продукт на который хотите заменить.',
-        queryLabel: 'Ни чего не нашлось',
+      :close-button="{
+        icon: 'i-heroicons-x-mark-20-solid',
+        color: 'gray',
+        variant: 'link',
+        padded: false,
       }"
       placeholder="Найти продукты..."
       ref="commandPaletteRef"
@@ -13,6 +15,7 @@
       :autoselect="false"
       :fuse="{ resultLimit: 10, fuseOptions: { threshold: 0.1 } }"
       @update:model-value="onSelect"
+      @close="closeCommandPalette"
     >
       <template #empty-state>
         <div class="flex flex-col items-center justify-center py-6 gap-3">
@@ -20,31 +23,22 @@
             >Продуктов по вашему запросу не найдено</span
           >
           <span class="italic text-sm">Попробуйте изменить запрос</span>
-          <UButton label="Закрыть" @click="close" />
+          <UButton label="Закрыть" @click="closeCommandPalette" />
         </div>
       </template>
       <template #products-command="{ command }">
-        <div class="flex items-center justify-between w-screen">
-          <NuxtImg
-            fit="contain"
-            :modifiers="{ b: '#F4F4F5' }"
-            quality="100"
-            densities="x1 x2"
-            class="flex rounded-xl mr-2 bg-zinc-100"
-            width="68"
-            height="68"
-            :src="`https://storage.yandexcloud.net/bludce/images/products/${command.img}`"
-            alt="product image"
-          />
-          <div class="flex-grow">
-            <span class="flex justify-start text-sm">{{ command.label }}</span>
-          </div>
-          <div class="flex">
-            <span class="flex justify-end text-sm w-16">{{
-              command.suffix
-            }}</span>
-          </div>
-        </div>
+        <CardProductSearch
+          :title="command.label"
+          :price="command.suffix"
+          :img="command.img"
+        />
+      </template>
+      <template #similarProducts-command="{ command }">
+        <CardProductSearch
+          :title="command.label"
+          :price="command.suffix"
+          :img="command.img"
+        />
       </template>
     </UCommandPalette>
   </UModal>
@@ -65,6 +59,7 @@ const addedProduct = ref({});
 const similarProducts = props.similarProducts.map((product) => ({
   id: product.id,
   label: product.title,
+  img: product.thumbnail,
   suffix: product.price ? `${Math.floor(product.price)} ₽` : "нет цены",
   click: async () => {
     try {
@@ -139,7 +134,7 @@ const handleAddProducts = (addedProduct) => {
   emit("productAdded", addedProduct.value);
   isOpen.value = false;
 };
-const close = () => {
+const closeCommandPalette = () => {
   isOpen.value = false;
 };
 </script>

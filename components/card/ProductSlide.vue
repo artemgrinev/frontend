@@ -1,3 +1,7 @@
+<!-- TODO: Добавить отоброжение из какого магазина продукт -->
+<!-- TODO: Добавить кнопку "like"-->
+<!-- TODO: Исправить отоброжение веса продукта(некоторые продукты 1000г а должно быть 1кг.) -->
+
 <script setup lang="ts">
 import { ref, defineProps } from "vue";
 import type { Product } from "~/interfaces/product/Product";
@@ -12,8 +16,8 @@ const handleProductAdded = (product: Product) => {
   emit("productAdded", product);
 };
 const imageLoaded = ref(false);
-
-const handleImageLoad = () => {
+const doSomethingOnLoad = () => {
+  console.log("Изображение загружено!");
   imageLoaded.value = true;
 };
 </script>
@@ -24,22 +28,17 @@ const handleImageLoad = () => {
       <!-- Image -->
       <a :href="product.url" class="relative block">
         <NuxtImg
-          fit="contain"
+          fit="cover"
+          loading="lazy"
           quality="100"
           :modifiers="{ b: '#F4F4F5' }"
           class="relative rounded-xl bg-zinc-100"
-          :class="{ 'opacity-0': !imageLoaded, 'opacity-100': imageLoaded }"
           width="198"
           height="198"
-          @load="handleImageLoad"
           :src="`https://storage.yandexcloud.net/bludce/images/products/${product.thumbnail}`"
           alt="product image"
         />
-        <USkeleton
-          v-if="!imageLoaded"
-          class="pr-3"
-          :ui="{ rounded: 'rounded-xl' }"
-        />
+
         <div
           class="flex items-center absolute bottom-0 left-4 bg-white rounded-t-md z-10"
         >
