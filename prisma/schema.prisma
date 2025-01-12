@@ -11,96 +11,113 @@ datasource db {
 }
 
 model Recipe {
-  id                     Int       @id @default(autoincrement())
+  id                     Int    @id @default(autoincrement())
+  url                    String @unique
   title                  String
-  description            String?
-  prepTimeMinutes        Int?
-  cookTimeMinutes        Int?
-  preliminaryPreparation String?
-  servings               Int?
-  difficulty             String?
-  cuisine                String?
+  description            String
+  prepTimeMinutes        Int
+  cookTimeMinutes        Int
+  preliminaryPreparation String
+  servings               Int
+  difficulty             String
+  image                  String
   caloriesPerServing     Int?
-  image                  String?
-  rating                 Float?
-  reviewCount            Int?
-  viewCount              Int?
-  datePublished          DateTime?
+  rating                 Float   @default(0)
+  reviewCount            Int     @default(0)
+  viewCount              Int     @default(0)
+  datePublished          DateTime
 
-  ingredients  Ingredient[]
-  instructions Instruction[]
-  tags         RecipeTag[]
-  products     RecipeProduct[]
+  category               RecipeCategory @relation(fields: [categoryId], references: [id])
+  categoryId             Int
+
+  cuisine                Cuisine        @relation(fields: [cuisineId], references: [id])
+  cuisineId              Int
+
+  ingredients            Ingredient[]
+  instructions           Instruction[]
+  tags                   RecipeTag[]    @relation("RecipeToRecipeTag")
 }
 
 model Ingredient {
-  id       Int     @id @default(autoincrement())
-  name     String
-  count    String?
-  recipe   Recipe  @relation(fields: [recipeId], references: [id])
-  recipeId Int
+  id            Int @id @default(autoincrement())
+  title         String
+  count         Int
+  amount        String
+
+  recipe        Recipe    @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId      Int
+
+  products      Product[] @relation("IngredientToProduct")
+
+  mainProduct   Product?  @relation("MainProductForIngredient", fields: [mainProductId], references: [id])
+  mainProductId Int?
 }
 
 model Instruction {
   id         Int     @id @default(autoincrement())
   title      String
-  image      String?
-  recipe     Recipe  @relation(fields: [recipeId], references: [id])
-  recipeId   Int
+  image      String? 
   stepNumber Int
+
+  recipe     Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId   Int
 }
 
 model Shop {
   id    Int     @id @default(autoincrement())
   name  String  @unique
-  url   String?
-  icon  String?
+  url   String
+  icon  String
 
   products Product[]
 }
 
 model Product {
   id                   Int     @id @default(autoincrement())
-  shopId               Int?
-  shop                 Shop?   @relation(fields: [shopId], references: [id])
-  url                  String?
+  url                  String
   title                String
   price                Float
   discountPercentage   Float?
-  rating               Float?
   weight               Int?
   amount               String?
   minimumOrderQuantity Float?
   pack                 Boolean  @default(false)
+  rating               Float?
   thumbnail            String?
 
-  recipes RecipeProduct[]
-  similarProducts      Product[] @relation("SimilarProducts")
-  similarTo           Product[] @relation("SimilarProducts")
+  shopId               Int
+  shop                 Shop         @relation(fields: [shopId], references: [id])
+
+  ingredients          Ingredient[] @relation("IngredientToProduct")
+  mainIngredientFor    Ingredient[] @relation("MainProductForIngredient")
+
+  similarProducts      Product[]    @relation("SimilarProducts")
+  similarTo            Product[]    @relation("SimilarProducts")
+
+  tags                 ProductTag[] @relation("ProductToProductTag")
 }
 
 
-
-model Tag {
-  id      Int         @id @default(autoincrement())
-  name    String      @unique
-  recipes RecipeTag[]
+model ProductTag {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[] @relation("ProductToProductTag")
 }
 
 model RecipeTag {
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
-  recipeId Int
-  tag      Tag    @relation(fields: [tagId], references: [id])
-  tagId    Int
-
-  @@id([recipeId, tagId])
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  recipes Recipe[] @relation("RecipeToRecipeTag")
 }
 
-model RecipeProduct {
-  recipe    Recipe  @relation(fields: [recipeId], references: [id])
-  recipeId  Int
-  product   Product @relation(fields: [productId], references: [id])
-  productId Int
+model RecipeCategory {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  recipes Recipe[]
+}
 
-  @@id([recipeId, productId])
+model Cuisine {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  recipes Recipe[]
 }

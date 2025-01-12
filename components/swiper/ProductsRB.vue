@@ -1,58 +1,55 @@
-<script setup>
+<!-- TODO: Создать скелетон для карточек продуктов -->
+
+<script setup lang="ts">
+import type { Product } from "~/interfaces/product/Product";
+
 const props = defineProps({
   items: {
-    type: Object,
+    type: Array as () => Product[],
     required: true,
-    default: [],
+    default: () => [],
   },
 });
+const emit = defineEmits(["productUpdated"]);
+const products = computed(() => [...props.items]);
 
-const loading = ref(true);
-
-watch(
-  () => props.items,
-  (newItems) => {
-    if (newItems.length > 0) {
-      loading.value = false;
-    } else {
-      loading.value = true;
-    }
-  },
-  { immediate: true }
-);
+const updateProduct = (id: number, updatedProduct: Product) => {
+  let productReplacementIds = {
+    currentProductId: id,
+    newProductId: updatedProduct,
+  };
+  const index = products.value.findIndex((product) => product.id === id);
+  products.value[index] = { ...products.value[index], ...updatedProduct };
+  console.log("productReplacementIds:", productReplacementIds);
+  emit("productUpdated", productReplacementIds);
+};
 </script>
 
 <template>
   <Swiper
     :modules="[SwiperAutoplay]"
     :slides-per-view="4"
-    :space-between="5"
     :breakpoints="{
       1280: {
         slidesPerView: 4,
-        spaceBetween: 10,
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 10,
       },
       640: {
         slidesPerView: 3.5,
-        spaceBetween: 10,
       },
       320: {
         slidesPerView: 2.5,
-        spaceBetween: 10,
       },
     }"
   >
-    <SwiperSlide v-for="item in items" :key="item.productId">
+    <SwiperSlide v-for="item in products" :key="item.id">
       <CardProductSlide
-        :title="item.product.title"
-        :img="item.product.thumbnail"
-        :weight="item.product.weight"
-        :price="item.product.price"
-        :rating="item.product.rating"
+        :product="item"
+        @productAdded="
+          (updatedProduct) => updateProduct(item.id, updatedProduct)
+        "
       />
     </SwiperSlide>
   </Swiper>
@@ -70,6 +67,7 @@ watch(
   height: auto;
   width: auto;
   border-radius: 16px;
+  margin-right: 10px;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(34, 60, 80, 0.22);
   -moz-box-shadow: 0px 2px 5px 0px rgba(34, 60, 80, 0.22);
   box-shadow: 0px 2px 5px 0px rgba(34, 60, 80, 0.22);

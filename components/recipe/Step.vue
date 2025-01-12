@@ -25,10 +25,12 @@ const props = defineProps({
 
 <template>
   <li class="flex items-start flex-col-reverse sm:flex-row mb-4">
-    <img
-      class="object-cover h-auto w-full sm:w-64 rounded-xl"
+    <NuxtImg
+      class="object-cover rounded-xl"
+      width="256"
+      height="170"
+      fit="cover"
       :src="img"
-      alt=""
     />
     <div class="flex flex-col md:pl-6 p-3 leading-normal">
       <h5 class="mb-2 text-2xl font-semibold tracking-tight">

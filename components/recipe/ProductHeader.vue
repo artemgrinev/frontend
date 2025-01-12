@@ -1,4 +1,11 @@
 <script setup lang="ts">
+const props = defineProps({
+  productsPrice: {
+    type: Number,
+    required: true,
+  },
+});
+
 const people = [
   {
     id: "benjamincanac",
@@ -37,7 +44,11 @@ const selected = ref(people[0]);
   <div class="sm:flex flex-row items-centr justify-between">
     <h3 class="md:font-bold text-2xl max-md:pb-5">Продукты для рецепта</h3>
     <div class="flex justify-between">
-      <UBadge class="mr-3 px-6 text-md" variant="soft" label="1243 ₽" />
+      <UBadge
+        class="mr-3 px-6 text-md"
+        variant="soft"
+        :label="`${props.productsPrice} ₽`"
+      />
       <USelectMenu
         v-model="selected"
         :options="people"

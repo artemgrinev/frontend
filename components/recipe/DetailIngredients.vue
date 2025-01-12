@@ -21,10 +21,10 @@ const props = defineProps({
     <ul v-for="(item, idx) in items" :key="idx">
       <li>
         <div class="text-lg _name">
-          {{ item.name }}
+          {{ item.title }}
         </div>
         <div class="text-lg font-medium _value">
-          {{ item.count }}
+          {{ item.count }} {{ item.amount }}
         </div>
       </li>
       <UDivider class="my-2 text-black" type="dashed" size="xs" />

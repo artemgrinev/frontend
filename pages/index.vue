@@ -1,6 +1,8 @@
-<script setup></script>
+<script setup>
+const { isMobile } = useDevice();
+</script>
 <template>
   <BaseContainer>
-    <h1>home page</h1>
+    <SkeletonRecipePage />
   </BaseContainer>
 </template>
